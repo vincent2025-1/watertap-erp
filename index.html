@@ -664,7 +664,7 @@ function renderOverview(){
   alertEl.innerHTML=alerts.map(a=>`<div class="alert-item a-${a.t}"><span class="alert-icon">${a.i}</span><div class="alert-text">${a.m}</div></div>`).join('');
   // Chart
   if(charts.ov)charts.ov.destroy();
-  const last7=dates.slice(-7);
+  const last7=dates;
   if(last7.length>1){
     charts.ov=new Chart(document.getElementById('chartOverview'),{type:'line',data:{labels:last7.map(d=>d.slice(5)),datasets:[
       {label:'GMV ¥',data:last7.map(d=>Math.round((pnl.bd[d]?.r||0)/ex)),borderColor:'var(--accent)',backgroundColor:'rgba(124,106,239,.08)',borderWidth:2,pointRadius:3,tension:.3,fill:true},
@@ -883,7 +883,7 @@ function renderCost(){
 function renderAds(){
   const _p=PF.ads;
   const el=document.getElementById('adsCards');
-  const{fSP,fTK}=pfAds(chr(39)+ads+chr(39));
+  const{fSP,fTK}=pfAds('ads');
   const stSP=fSP.reduce((s,a)=>({s:s.s+a.spend,sl:s.sl+a.sales}),{s:0,sl:0});
   const stTK=fTK.reduce((s,a)=>({s:s.s+a.spend,sl:s.sl+a.sales}),{s:0,sl:0});
   const spDays=[...new Set(fSP.map(a=>a.date).filter(Boolean))].length;
