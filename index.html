@@ -259,6 +259,10 @@ tr.top5{background:var(--green-bg)!important;}tr.top5:hover{background:rgba(61,2
   .card-wide{flex-wrap:wrap;gap:10px;}.card-wide .cw-sep{display:none;}.card-wide .cw-item{min-width:70px;}
   .price-suggest{grid-template-columns:1fr;}
 }
+.pf-bar{padding:8px 16px;gap:6px;font-size:11px;border-bottom:1px solid var(--border);margin:-8px -20px 12px;padding:8px 20px;}
+.pf-bar .fbtn{padding:3px 10px;font-size:11px;}
+.pf-bar label{font-size:11px;}
+.pf-bar input[type="date"]{font-size:11px;padding:2px 6px;}
 </style>
 </head>
 <body>
@@ -290,12 +294,13 @@ tr.top5{background:var(--green-bg)!important;}tr.top5:hover{background:rgba(61,2
   <!-- ═══ OVERVIEW ═══ -->
   <div class="page active" id="page-overview">
     <div class="page-header"><div class="page-title">数据概览</div><div class="page-sub">关键经营指标与运营提醒</div></div>
+    <div class="filter-bar pf-bar" id="pf-overview"><label>时间段</label><button class="fbtn pf-btn" data-pf="overview" data-range="7">近7天</button><button class="fbtn pf-btn" data-pf="overview" data-range="14">近14天</button><button class="fbtn pf-btn" data-pf="overview" data-range="30">近30天</button><button class="fbtn pf-btn" data-pf="overview" data-range="thisMonth">本月</button><button class="fbtn pf-btn" data-pf="overview" data-range="lastMonth">上月</button><button class="fbtn pf-btn active" data-pf="overview" data-range="all">全部</button><div class="filter-sep"></div><label>自定义</label><input type="date" class="pf-from" data-pf="overview"><span style="color:var(--text3)">—</span><input type="date" class="pf-to" data-pf="overview"></div>
     <div class="kpi-row" id="overviewKPIs"></div>
     <div class="grid2e">
       <div class="section"><div class="section-title">📈 经营快照</div><div id="overviewSnapshot"></div></div>
       <div class="section"><div class="section-title">🔔 运营提醒</div><div id="overviewAlerts"></div></div>
     </div>
-    <div class="section"><div class="section-title">近7日趋势</div><div class="chart-sm"><canvas id="chartOverview"></canvas></div></div>
+    <div class="section"><div class="section-title" id="ovChartTitle">趋势</div><div class="chart-sm"><canvas id="chartOverview"></canvas></div></div>
   </div>
 
   <!-- ═══ DASHBOARD (P&L) ═══ -->
@@ -327,7 +332,8 @@ tr.top5{background:var(--green-bg)!important;}tr.top5:hover{background:rgba(61,2
 
   <!-- ═══ CATEGORY ═══ -->
   <div class="page" id="page-cat">
-    <div class="page-header"><div class="page-title">品类利润排名</div><div class="page-sub" id="catSub">按毛利降序 · 受日期筛选联动</div></div>
+    <div class="page-header"><div class="page-title">品类利润排名</div><div class="page-sub" id="catSub">按毛利降序</div></div>
+    <div class="filter-bar pf-bar" id="pf-cat"><label>时间段</label><button class="fbtn pf-btn" data-pf="cat" data-range="7">近7天</button><button class="fbtn pf-btn" data-pf="cat" data-range="14">近14天</button><button class="fbtn pf-btn" data-pf="cat" data-range="30">近30天</button><button class="fbtn pf-btn" data-pf="cat" data-range="thisMonth">本月</button><button class="fbtn pf-btn" data-pf="cat" data-range="lastMonth">上月</button><button class="fbtn pf-btn active" data-pf="cat" data-range="all">全部</button><div class="filter-sep"></div><label>自定义</label><input type="date" class="pf-from" data-pf="cat"><span style="color:var(--text3)">—</span><input type="date" class="pf-to" data-pf="cat"></div>
     <div class="section"><div class="section-title">TOP8 品类毛利 (¥)</div><div class="chart-box"><canvas id="chartCat"></canvas></div></div>
     <div class="section overflow"><table id="catTable"><thead><tr><th class="r">#</th><th class="l">品类</th><th class="r">订单</th><th class="r">GMV ¥</th><th class="r">毛利 ¥</th><th class="r">毛利率</th><th class="r">占比</th><th class="r">累计</th><th class="r">日均 ¥</th></tr></thead><tbody></tbody></table></div>
   </div>
@@ -335,6 +341,7 @@ tr.top5{background:var(--green-bg)!important;}tr.top5:hover{background:rgba(61,2
   <!-- ═══ SPU RANKING ═══ -->
   <div class="page" id="page-spu">
     <div class="page-header"><div class="page-title">🏆 商品排行榜</div><div class="page-sub" id="spuSub">按SKU前缀聚合为SPU · 精确到单品级别的升降分析</div></div>
+    <div class="filter-bar pf-bar" id="pf-spu"><label>时间段</label><button class="fbtn pf-btn" data-pf="spu" data-range="7">近7天</button><button class="fbtn pf-btn" data-pf="spu" data-range="14">近14天</button><button class="fbtn pf-btn" data-pf="spu" data-range="30">近30天</button><button class="fbtn pf-btn" data-pf="spu" data-range="thisMonth">本月</button><button class="fbtn pf-btn" data-pf="spu" data-range="lastMonth">上月</button><button class="fbtn pf-btn active" data-pf="spu" data-range="all">全部</button><div class="filter-sep"></div><label>自定义</label><input type="date" class="pf-from" data-pf="spu"><span style="color:var(--text3)">—</span><input type="date" class="pf-to" data-pf="spu"></div>
     <div class="kpi-row" id="spuSummaryCards"></div>
     <div class="section"><div class="section-title">SPU排行 TOP8 净利 (¥)</div><div class="chart-box"><canvas id="chartSpu"></canvas></div></div>
     <div class="section overflow" style="max-height:600px"><table id="spuTable"><thead><tr>
@@ -348,6 +355,7 @@ tr.top5{background:var(--green-bg)!important;}tr.top5:hover{background:rgba(61,2
   <!-- ═══ COST SUMMARY (NEW) ═══ -->
   <div class="page" id="page-cost">
     <div class="page-header"><div class="page-title">🏷️ 货本汇总</div><div class="page-sub" id="costSub">拿货价·海运费·供应商结算测算</div></div>
+    <div class="filter-bar pf-bar" id="pf-cost"><label>时间段</label><button class="fbtn pf-btn" data-pf="cost" data-range="7">近7天</button><button class="fbtn pf-btn" data-pf="cost" data-range="14">近14天</button><button class="fbtn pf-btn" data-pf="cost" data-range="30">近30天</button><button class="fbtn pf-btn" data-pf="cost" data-range="thisMonth">本月</button><button class="fbtn pf-btn" data-pf="cost" data-range="lastMonth">上月</button><button class="fbtn pf-btn active" data-pf="cost" data-range="all">全部</button><div class="filter-sep"></div><label>自定义</label><input type="date" class="pf-from" data-pf="cost"><span style="color:var(--text3)">—</span><input type="date" class="pf-to" data-pf="cost"></div>
     <div class="cost-summary-grid" id="costSummaryCards"></div>
     <div class="section"><div class="section-title">品类货本明细</div><div class="overflow"><table id="costCatTable"><thead><tr><th class="l">品类</th><th class="r">销量(件)</th><th class="r">拿货价合计 ¥</th><th class="r">海运费合计 ¥</th><th class="r">落地成本 ¥</th><th class="r">件均成本 ¥</th><th class="r">占总货本</th></tr></thead><tbody></tbody></table></div></div>
     <div class="section"><div class="section-title">SPU 货本明细（按落地成本降序）</div><div class="overflow" style="max-height:400px"><table id="costSpuTable"><thead><tr><th class="l">SPU</th><th class="l">品名</th><th class="l">品类</th><th class="r">销量</th><th class="r">件均成本 ¥</th><th class="r">拿货总计 ¥</th><th class="r">海运总计 ¥</th><th class="r">落地总计 ¥</th><th class="r">占总货本</th></tr></thead><tbody></tbody></table></div></div>
@@ -357,6 +365,7 @@ tr.top5{background:var(--green-bg)!important;}tr.top5:hover{background:rgba(61,2
   <!-- ═══ ADS ═══ -->
   <div class="page" id="page-ads">
     <div class="page-header"><div class="page-title">广告效率监控</div><div class="page-sub">ROAS ≥6 加投 · 4~6 维持 · &lt;4 砍</div></div>
+    <div class="filter-bar pf-bar" id="pf-ads"><label>时间段</label><button class="fbtn pf-btn" data-pf="ads" data-range="7">近7天</button><button class="fbtn pf-btn" data-pf="ads" data-range="14">近14天</button><button class="fbtn pf-btn" data-pf="ads" data-range="30">近30天</button><button class="fbtn pf-btn" data-pf="ads" data-range="thisMonth">本月</button><button class="fbtn pf-btn" data-pf="ads" data-range="lastMonth">上月</button><button class="fbtn pf-btn active" data-pf="ads" data-range="all">全部</button><div class="filter-sep"></div><label>自定义</label><input type="date" class="pf-from" data-pf="ads"><span style="color:var(--text3)">—</span><input type="date" class="pf-to" data-pf="ads"></div>
     <div class="grid4" id="adsCards"></div>
     <div class="section overflow" id="spAdsSection" style="display:none"><div class="section-title" id="spAdsTitle"></div><table id="spAdsTable"><thead><tr><th class="l">名称</th><th class="r">花费</th><th class="r">销售</th><th class="r">ROAS</th><th class="r">直接ROAS</th><th class="r">转化</th><th class="l">判定</th></tr></thead><tbody></tbody></table></div>
     <div class="section overflow" id="tkAdsSection" style="display:none"><div class="section-title" id="tkAdsTitle"></div><table id="tkAdsTable"><thead><tr><th class="l">Campaign</th><th class="r">$花费</th><th class="r">$销售</th><th class="r">ROI</th><th class="r">订单</th><th class="l">判定</th></tr></thead><tbody></tbody></table></div>
@@ -454,20 +463,21 @@ function updateChartTheme(){
 const CFG_DEFAULT={ex:2424,spFee:.245,tkFee:.21,usdIdr:16300,staffCost:7400,facilityCost:2700};
 const CFG=(()=>{try{const s=localStorage.getItem('wt_cfg');if(s){return Object.assign({},CFG_DEFAULT,JSON.parse(s));}return{...CFG_DEFAULT};}catch(e){return{...CFG_DEFAULT};}})();
 function saveCfg(){try{localStorage.setItem('wt_cfg',JSON.stringify(CFG));}catch(e){}}
-const MARGINS_DEFAULT={'洗车管':.452,'洗车架':.404,'大流量双头管':.565,'SS304花洒管':.637,'尼龙花洒管':.454,'A款前置过滤器':.261,'PVDF过滤器':.55,'喷枪/妇洗器':.419,'花洒头':.249,'皂液器':.32,'转接头':.7,'密封件':.632,'硅胶花洒管':.604,'管件/支架':.289,'铜阀门/龙头':.365,'花洒支架':.487,'墙壁龙头':.174,'洗衣机进水管':.445,'妇洗器管':.333,'花洒头套装':.436,'分水器/阀门':.448,'其他':.4};
+const MARGINS_DEFAULT={'洗车管':.452,'洗车架':.404,'大流量双头管':.565,'SS304花洒管':.637,'尼龙花洒管':.454,'前置过滤器':.261,'PVDF过滤器':.55,'喷枪/妇洗器':.419,'花洒头':.249,'皂液器':.32,'转接头':.7,'密封件':.632,'硅胶花洒管':.604,'管件/支架':.289,'铜阀门/龙头':.365,'花洒支架':.487,'墙壁龙头':.174,'洗衣机进水管':.445,'妇洗器管':.333,'花洒头套装':.436,'分水器/阀门':.448,'其他':.4};
 const MARGINS=(()=>{try{const s=localStorage.getItem('wt_margins');if(s)return Object.assign({},MARGINS_DEFAULT,JSON.parse(s));return{...MARGINS_DEFAULT};}catch(e){return{...MARGINS_DEFAULT};}})();
 function saveMargins(){try{localStorage.setItem('wt_margins',JSON.stringify(MARGINS));}catch(e){}}
 
-const CKW=[['洗车管',['cuci mobil','car wash','selang air tahan','selang cuci','selang air anti','hose reel selang']],['洗车架',['rak selang','hose reel','gulungan selang','hose rack','reel selang']],['大流量双头管',['double head','dual head','kepala ganda','fleksibel ss304 double','selang air panas dingin']],['SS304花洒管',['selang shower stainless','shower hose stainless','ss304 shower','selang shower anti']],['尼龙花洒管',['selang shower bidet','nylon shower','selang shower fleksibel nylon','shower hose nylon','selang shower 1.5','selang shower 2m','selang shower 1m']],['硅胶花洒管',['silikon shower','silicone shower','selang shower silikon']],['A款前置过滤器',['filter air','water filter','penyaring air','saringan air','pre filter']],['PVDF过滤器',['pvdf','ultrafiltrasi']],['喷枪/妇洗器',['nozzle','spray gun','jet sprayer','semprotan','bidet sprayer','cebok','toilet spray']],['花洒头',['shower head','kepala shower','rain shower','shower mandi']],['花洒头套装',['shower set','set shower']],['花洒支架',['bracket shower','dudukan shower','holder shower']],['转接头',['adaptor','adapter','konektor','connector','sambungan']],['皂液器',['sabun','soap dispenser','tempat sabun']],['铜阀门/龙头',['keran','valve','katup','faucet','kran','stop kran','ball valve']],['墙壁龙头',['keran dinding','wall faucet']],['密封件',['seal','o-ring','gasket','ring seal']],['管件/支架',['fitting','elbow','tee','nipple','drat','pipe clamp','klem pipa']],['洗衣机进水管',['mesin cuci','washing machine','inlet hose']],['妇洗器管',['selang bidet','bidet hose']],['分水器/阀门',['divider','splitter','cabang air','pembagi air']]];
+const CKW=[['洗车管',['cuci mobil','car wash','selang air tahan','selang cuci','selang air anti','hose reel selang']],['洗车架',['rak selang','hose reel','gulungan selang','hose rack','reel selang']],['大流量双头管',['double head','dual head','kepala ganda','fleksibel ss304 double','selang air panas dingin']],['SS304花洒管',['selang shower stainless','shower hose stainless','ss304 shower','selang shower anti']],['尼龙花洒管',['selang shower bidet','nylon shower','selang shower fleksibel nylon','shower hose nylon','selang shower 1.5','selang shower 2m','selang shower 1m']],['硅胶花洒管',['silikon shower','silicone shower','selang shower silikon']],['花洒头套装',['shower set','set shower']],['前置过滤器',['filter air','water filter','penyaring air','saringan air','pre filter','filter rumah']],['PVDF过滤器',['pvdf','ultrafiltrasi']],['喷枪/妇洗器',['nozzle','spray gun','jet sprayer','semprotan','bidet sprayer','cebok','toilet spray']],['花洒头',['shower head','kepala shower','rain shower','shower mandi']],['花洒支架',['bracket shower','dudukan shower','holder shower']],['转接头',['adaptor','adapter','konektor','connector','sambungan']],['皂液器',['sabun','soap dispenser','tempat sabun']],['铜阀门/龙头',['keran','valve','katup','faucet','kran','stop kran','ball valve']],['墙壁龙头',['keran dinding','wall faucet']],['密封件',['seal','o-ring','gasket','ring seal']],['管件/支架',['fitting','elbow','tee','nipple','drat','pipe clamp','klem pipa']],['洗衣机进水管',['mesin cuci','washing machine','inlet hose']],['妇洗器管',['selang bidet','bidet hose']],['分水器/阀门',['divider','splitter','cabang air','pembagi air']]];
 
 // ═══ STATE ═══
 let orders=[],spAds=[],tkAds=[],logs=[];
 let costMap={};
 let charts={};
 let filterFrom=null,filterTo=null;
+const PF={overview:{f:null,t:null},dash:{f:null,t:null},cat:{f:null,t:null},spu:{f:null,t:null},cost:{f:null,t:null},ads:{f:null,t:null}};
 
 // ═══ UTILS ═══
-function classify(name,sku){const t=(name+' '+(sku||'')).toLowerCase();for(const[c,ks]of CKW)if(ks.some(k=>t.includes(k)))return c;return'其他';}
+function classify(name,sku){if(sku){const p=sku.split('-')[0].toUpperCase();if(p==='S1182')return'花洒头套装';if(/^K260(1[1-9]|2[0-2])$/.test(p))return'前置过滤器';if(p==='F001')return'PVDF过滤器';}const t=(name+' '+(sku||'')).toLowerCase();for(const[c,ks]of CKW)if(ks.some(k=>t.includes(k)))return c;return'其他';}
 function pn(v){if(v==null||v===''||v==='-')return 0;return parseFloat(String(v).replace(/[,%\s]/g,''))||0;}
 function pd(v){if(!v)return null;const s=String(v).trim();let m;if((m=s.match(/(\d{2})\/(\d{2})\/(\d{4})/)))return m[3]+'-'+m[2]+'-'+m[1];if((m=s.match(/(\d{4})-(\d{2})-(\d{2})/)))return m[0];return null;}
 function fm(n,d){return n==null||isNaN(n)?'—':n.toLocaleString('en-US',{minimumFractionDigits:d||0,maximumFractionDigits:d||0});}
@@ -477,8 +487,12 @@ function roasColor(v){return v>=6?'var(--green)':v>=4?'var(--yellow)':'var(--red
 function cardHTML(l,v,s,c,explain){return`<div class="card"><div class="card-glow" style="${c?'background:linear-gradient(90deg,transparent,'+c+',transparent)':''}"></div><div class="label">${l}</div><div class="value" style="color:${c||'var(--text)'}">${v}</div>${s?`<div class="sub">${s}</div>`:''}${explain?`<div class="explain">${explain}</div>`:''}</div>`;}
 
 // ═══ DATE FILTER ═══
-function getFilteredOrders(){if(!filterFrom&&!filterTo)return orders;return orders.filter(o=>{if(!o.date)return false;if(filterFrom&&o.date<filterFrom)return false;if(filterTo&&o.date>filterTo)return false;return true;});}
-function setDateRange(from,to){filterFrom=from;filterTo=to;document.getElementById('dateFrom').value=from||'';document.getElementById('dateTo').value=to||'';renderDash();renderCat();renderAds();renderCost();renderSpu();}
+function getFilteredOrders(ff,ft){const f=ff!==undefined?ff:filterFrom,t=ft!==undefined?ft:filterTo;if(!f&&!t)return orders;return orders.filter(o=>{if(!o.date)return false;if(f&&o.date<f)return false;if(t&&o.date>t)return false;return true;});}
+
+function setPageFilter(pg,from,to){PF[pg].f=from;PF[pg].t=to;const el=document.getElementById('pf-'+pg);if(el){el.querySelector('.pf-from').value=from||'';el.querySelector('.pf-to').value=to||'';}const fn={overview:renderOverview,cat:renderCat,spu:renderSpu,cost:renderCost,ads:renderAds};if(fn[pg])fn[pg]();}
+function pfOrders(pg){const p=PF[pg];return getFilteredOrders(p.f,p.t);}
+function pfAds(pg){const p=PF[pg];return{fSP:spAds.filter(a=>(!p.f||a.date>=p.f)&&(!p.t||a.date<=p.t)),fTK:tkAds.filter(a=>(!p.f||a.date>=p.f)&&(!p.t||a.date<=p.t))};}
+function setDateRange(from,to){filterFrom=from;filterTo=to;PF.dash.f=from;PF.dash.t=to;document.getElementById('dateFrom').value=from||'';document.getElementById('dateTo').value=to||'';renderDash();}
 // Jakarta timezone: UTC+7, avoid toISOString (which is UTC)
 function _jkt(){const n=new Date(),u=n.getTime()+n.getTimezoneOffset()*60000;return new Date(u+7*3600000);}
 function _fmt(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
@@ -556,7 +570,7 @@ async function cloudDownload(){const url=getSyncUrl();if(!url){syncLog('❌ 未�
 async function cloudTest(){const url=getSyncUrl();if(!url){syncLog('❌ 未设置');return;}syncLog('🔗 测试...');try{const resp=await fetch(url);if(!resp.ok)throw new Error('HTTP '+resp.status);const data=await resp.json();syncLog('✅ 连接成功! 云端: '+(data.orders||data.o||[]).length+'条');}catch(err){syncLog('❌ '+err.message);}}
 
 // ═══ P&L CALC ═══
-function calcPnL(orderList){
+function calcPnL(orderList,_ff,_ft){
   const src=orderList||getFilteredOrders();if(!src.length)return null;
   let rev=0,gross=0,matchedCnt=0,fallbackCnt=0;
   const bc={},bd={},bp={SP:{r:0,g:0,n:0},TK:{r:0,g:0,n:0}};
@@ -570,16 +584,17 @@ function calcPnL(orderList){
     if(o.date){if(!bd[o.date])bd[o.date]={r:0,g:0,n:0};bd[o.date].r+=o.rev;bd[o.date].g+=g;bd[o.date].n++;}
     const pp=bp[o.p];if(pp){pp.r+=o.rev;pp.g+=g;pp.n++;}
   }
-  const fSP=spAds.filter(a=>(!filterFrom||a.date>=filterFrom)&&(!filterTo||a.date<=filterTo));
-  const fTK=tkAds.filter(a=>(!filterFrom||a.date>=filterFrom)&&(!filterTo||a.date<=filterTo));
+  const _f=_ff!==undefined?_ff:filterFrom,_t=_ft!==undefined?_ft:filterTo;
+  const fSP=spAds.filter(a=>(!_f||a.date>=_f)&&(!_t||a.date<=_t));
+  const fTK=tkAds.filter(a=>(!_f||a.date>=_f)&&(!_t||a.date<=_t));
   const sad=fSP.reduce((s,a)=>s+a.spend,0);const tad=fTK.reduce((s,a)=>s+(a.spendIDR||0),0);
   const ad=sad+tad;const days=Object.keys(bd).length||1;
   return{rev,gross,ad,ebit:gross-ad,sad,tad,bc,bd,bp,days,cnt:src.length,matchedCnt,fallbackCnt};
 }
 
 // ═══ COST SUMMARY CALC ═══
-function calcCostSummary(){
-  const src=getFilteredOrders();if(!src.length||!Object.keys(costMap).length)return null;
+function calcCostSummary(_ff,_ft){
+  const src=_ff!==undefined||_ft!==undefined?orders.filter(o=>{if(!o.date)return false;if(_ff&&o.date<_ff)return false;if(_ft&&o.date>_ft)return false;return true;}):getFilteredOrders();if(!src.length||!Object.keys(costMap).length)return null;
   let totalBuy=0,totalShip=0,totalCost=0,totalQty=0,matched=0;
   const byCat={},bySku={};
   for(const o of src){
@@ -606,7 +621,8 @@ function renderAll(){renderOverview();renderImport();renderDash();renderCat();re
 
 // ═══ OVERVIEW ═══
 function renderOverview(){
-  const pnl=calcPnL(orders);
+  const _p=PF.overview;const _src=_p.f||_p.t?pfOrders("overview"):orders;
+  const pnl=calcPnL(_src,_p.f,_p.t);
   const kpiEl=document.getElementById('overviewKPIs');
   const snapEl=document.getElementById('overviewSnapshot');
   const alertEl=document.getElementById('overviewAlerts');
@@ -680,7 +696,7 @@ function renderImport(){
 }
 
 function renderDash(){
-  const pnl=calcPnL();const el=document.getElementById('dashCards');const nb=document.getElementById('netProfitBar');const fi=document.getElementById('filterInfo');
+  const _p=PF.dash;const pnl=calcPnL(_p.f||_p.t?pfOrders("dash"):null,_p.f,_p.t);const el=document.getElementById('dashCards');const nb=document.getElementById('netProfitBar');const fi=document.getElementById('filterInfo');
   if(!pnl){el.innerHTML='<div style="grid-column:1/-1;text-align:center;padding:50px;color:var(--text3)"><div style="font-size:36px;margin-bottom:6px;opacity:.5">💰</div><div>请先导入订单数据</div></div>';nb.innerHTML='';fi.textContent='';return;}
   const ex=CFG.ex,rR=Math.round(pnl.rev/ex),gR=Math.round(pnl.gross/ex),aR=Math.round(pnl.ad/ex),eR=Math.round(pnl.ebit/ex);
   fi.textContent=`${pnl.days} 天 · ${fm(pnl.cnt)} 单 · 日均 ¥${fm(Math.round(rR/pnl.days))}`;
@@ -705,7 +721,7 @@ function renderDash(){
 }
 
 function renderCat(){
-  const pnl=calcPnL();if(!pnl)return;
+  const _p=PF.cat;const pnl=calcPnL(_p.f||_p.t?pfOrders("cat"):null,_p.f,_p.t);if(!pnl)return;
   document.getElementById('catSub').textContent=`按毛利降序 · ${pnl.days}天 · ${fm(pnl.cnt)}单`;
   const cats=Object.entries(pnl.bc).map(([c,d])=>({c,r:d.r,g:d.g,n:d.n,gR:d.g/CFG.ex,rR:d.r/CFG.ex,mg:d.g/d.r*100,pct:d.g/pnl.gross*100})).sort((a,b)=>b.gR-a.gR);
   let cm=0;cats.forEach(c=>{cm+=c.pct;c.cm=cm;});
@@ -740,13 +756,12 @@ function cleanSpuName(name){
 }
 
 function renderSpu(){
-  const fo=getFilteredOrders();if(!fo.length){document.getElementById('spuSummaryCards').innerHTML='<div class="kpi-mini" style="grid-column:1/-1"><div class="km-label">商品排行</div><div class="km-val" style="font-size:14px;color:var(--text3)">请先导入订单数据</div></div>';return;}
+  const _p=PF.spu;const fo=pfOrders("spu");if(!fo.length){document.getElementById('spuSummaryCards').innerHTML='<div class="kpi-mini" style="grid-column:1/-1"><div class="km-label">商品排行</div><div class="km-val" style="font-size:14px;color:var(--text3)">请先导入订单数据</div></div>';return;}
   const ex=CFG.ex;const days=new Set(fo.map(o=>o.date).filter(Boolean));const nd=Math.max(days.size,1);
   const hasCost=Object.keys(costMap).length>0;
 
   // Step 1: Calculate ads by CATEGORY (not by total GMV)
-  const fSP=spAds.filter(a=>(!filterFrom||a.date>=filterFrom)&&(!filterTo||a.date<=filterTo));
-  const fTK=tkAds.filter(a=>(!filterFrom||a.date>=filterFrom)&&(!filterTo||a.date<=filterTo));
+  const{fSP,fTK}=pfAds('spu');
   const catAdsRMB={};// category → total ads in RMB
   // SP ads: classify by ad plan name
   fSP.forEach(a=>{const cat=classify(a.name||'','');catAdsRMB[cat]=(catAdsRMB[cat]||0)+a.spend/ex;});
@@ -843,11 +858,11 @@ function renderSpu(){
 
 // ═══ COST SUMMARY ═══
 function renderCost(){
-  const cs=calcCostSummary();
+  const _p=PF.cost;const cs=calcCostSummary(_p.f,_p.t);
   const cards=document.getElementById('costSummaryCards');
   if(!cs){cards.innerHTML=`<div class="cost-big" style="grid-column:1/-1"><div class="cb-label">货本汇总</div><div class="cb-val" style="color:var(--text3);font-size:16px;margin-top:12px">${Object.keys(costMap).length?'请先导入订单数据':'请先导入 Vincent拿货价.xlsx 和订单数据'}</div></div>`;
   document.querySelector('#costCatTable tbody').innerHTML='';document.querySelector('#costSpuTable tbody').innerHTML='';document.querySelector('#costSkuTable tbody').innerHTML='';return;}
-  const pnl=calcPnL();const days=pnl?pnl.days:1;
+  const pnl=calcPnL(_p.f||_p.t?pfOrders("cost"):null,_p.f,_p.t);const days=pnl?pnl.days:1;
   document.getElementById('costSub').textContent=`${days}天 · 匹配${fm(cs.matched)}/${fm(cs.total)}单 (${Math.round(cs.matched/cs.total*100)}%) · 受日期筛选联动`;
   cards.innerHTML=`
     <div class="cost-big"><div class="cb-label">拿货价合计</div><div class="cb-val" style="color:var(--accent2)">¥${fm(Math.round(cs.totalBuy))}</div><div class="cb-sub">供应商结算金额</div></div>
@@ -866,9 +881,9 @@ function renderCost(){
 }
 
 function renderAds(){
+  const _p=PF.ads;
   const el=document.getElementById('adsCards');
-  const fSP=spAds.filter(a=>(!filterFrom||a.date>=filterFrom)&&(!filterTo||a.date<=filterTo));
-  const fTK=tkAds.filter(a=>(!filterFrom||a.date>=filterFrom)&&(!filterTo||a.date<=filterTo));
+  const{fSP,fTK}=pfAds(chr(39)+ads+chr(39));
   const stSP=fSP.reduce((s,a)=>({s:s.s+a.spend,sl:s.sl+a.sales}),{s:0,sl:0});
   const stTK=fTK.reduce((s,a)=>({s:s.s+a.spend,sl:s.sl+a.sales}),{s:0,sl:0});
   const spDays=[...new Set(fSP.map(a=>a.date).filter(Boolean))].length;
@@ -954,9 +969,11 @@ document.getElementById('btnImportBackup').addEventListener('click',()=>document
 document.getElementById('backupInput').addEventListener('change',async e=>{const f=e.target.files[0];if(!f)return;try{const data=JSON.parse(await f.text());if(!data.orders&&!data.o){alert('无效备份');return;}const o=data.orders||data.o||[];if(!confirm(`恢复 ${o.length}条？`))return;orders=o;spAds=data.spAds||data.sa||[];tkAds=data.tkAds||data.ta||[];logs=data.logs||data.l||[];if(data.costMap){costMap=data.costMap;saveCostMap();}saveData();renderAll();alert('恢复成功');}catch(err){alert('失败: '+err.message);}e.target.value='';});
 document.getElementById('btnQuickSync').addEventListener('click',async()=>{if(!getSyncUrl()){alert('请先配置API地址');return;}const btn=document.getElementById('btnQuickSync');btn.textContent='⏳';btn.disabled=true;await cloudUpload();btn.textContent='☁️ 同步';btn.disabled=false;});
 
-document.querySelectorAll('.fbtn[data-range]').forEach(btn=>{btn.addEventListener('click',()=>{document.querySelectorAll('.fbtn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');const r=btn.dataset.range;if(r==='all')setDateRange(null,null);else if(r==='thisMonth')setDateRange(monthStart(0),today());else if(r==='lastMonth')setDateRange(monthStart(-1),monthEnd(-1));else setDateRange(addDays(today(),-parseInt(r)),today());});});
-document.getElementById('dateFrom').addEventListener('change',e=>{document.querySelectorAll('.fbtn').forEach(b=>b.classList.remove('active'));filterFrom=e.target.value||null;renderDash();renderCat();renderAds();renderCost();renderSpu();});
-document.getElementById('dateTo').addEventListener('change',e=>{document.querySelectorAll('.fbtn').forEach(b=>b.classList.remove('active'));filterTo=e.target.value||null;renderDash();renderCat();renderAds();renderCost();renderSpu();});
+document.querySelectorAll('#dateFilter .fbtn[data-range]').forEach(btn=>{btn.addEventListener('click',()=>{document.querySelectorAll('#dateFilter .fbtn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');const r=btn.dataset.range;if(r==='all')setDateRange(null,null);else if(r==='thisMonth')setDateRange(monthStart(0),today());else if(r==='lastMonth')setDateRange(monthStart(-1),monthEnd(-1));else setDateRange(addDays(today(),-parseInt(r)),today());});});
+document.getElementById('dateFrom').addEventListener('change',e=>{document.querySelectorAll('#dateFilter .fbtn').forEach(b=>b.classList.remove('active'));filterFrom=e.target.value||null;PF.dash.f=filterFrom;renderDash();});
+document.getElementById('dateTo').addEventListener('change',e=>{document.querySelectorAll('#dateFilter .fbtn').forEach(b=>b.classList.remove('active'));filterTo=e.target.value||null;PF.dash.t=filterTo;renderDash();});
+document.addEventListener('click',e=>{const btn=e.target.closest('.pf-btn');if(!btn)return;const pg=btn.dataset.pf,r=btn.dataset.range;document.querySelectorAll('#pf-'+pg+' .pf-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');if(r==='all')setPageFilter(pg,null,null);else if(r==='thisMonth')setPageFilter(pg,monthStart(0),today());else if(r==='lastMonth')setPageFilter(pg,monthStart(-1),monthEnd(-1));else setPageFilter(pg,addDays(today(),-parseInt(r)),today());});
+document.addEventListener('change',e=>{if(e.target.classList.contains('pf-from')){const pg=e.target.dataset.pf;document.querySelectorAll('#pf-'+pg+' .pf-btn').forEach(b=>b.classList.remove('active'));PF[pg].f=e.target.value||null;const fn={overview:renderOverview,cat:renderCat,spu:renderSpu,cost:renderCost,ads:renderAds};if(fn[pg])fn[pg]();}if(e.target.classList.contains('pf-to')){const pg=e.target.dataset.pf;document.querySelectorAll('#pf-'+pg+' .pf-btn').forEach(b=>b.classList.remove('active'));PF[pg].t=e.target.value||null;const fn={overview:renderOverview,cat:renderCat,spu:renderSpu,cost:renderCost,ads:renderAds};if(fn[pg])fn[pg]();}});
 
 document.getElementById('btnSaveUrl').addEventListener('click',()=>{const url=document.getElementById('syncUrl').value.trim();if(!url||!url.startsWith('https://script.google.com/')){alert('URL格式不对');return;}setSyncUrl(url);document.getElementById('urlStatus').textContent='✅ 已保存';syncLog('🔗 已保存');});
 document.getElementById('btnCloudUp').addEventListener('click',cloudUpload);
@@ -976,5 +993,6 @@ document.getElementById('autoSync').addEventListener('change',e=>setAutoSync(e.t
   renderAll();
 })();
 </script>
+<div style="text-align:center;padding:24px 0 16px;font-size:11px;color:var(--text3);letter-spacing:0.5px">© Water Tap Indonesia All Rights Reserved</div>
 </body>
 </html>
