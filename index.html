@@ -263,6 +263,16 @@ tr.top5{background:var(--green-bg)!important;}tr.top5:hover{background:rgba(61,2
 .pf-bar .fbtn{padding:3px 10px;font-size:11px;}
 .pf-bar label{font-size:11px;}
 .pf-bar input[type="date"]{font-size:11px;padding:2px 6px;}
+.inv-badge{display:inline-block;padding:2px 8px;border-radius:10px;font-size:10px;font-weight:600;white-space:nowrap;}
+.inv-badge.inv-oos{background:#ffcdd2;color:#c62828;}
+.inv-badge.inv-critical{background:#ffe0b2;color:#e65100;}
+.inv-badge.inv-warn{background:#fff9c4;color:#f57f17;}
+.inv-badge.inv-ok{background:#c8e6c9;color:#2e7d32;}
+.inv-badge.inv-over{background:#eceff1;color:#607d8b;}
+.inv-badge.inv-nosale{background:#e0e0e0;color:#757575;}
+tr.inv-oos{background:#fff5f5 !important;}
+tr.inv-critical{background:#fff8f0 !important;}
+tr.inv-warn{background:#fffde7 !important;}
 </style>
 </head>
 <body>
@@ -281,6 +291,7 @@ tr.top5{background:var(--green-bg)!important;}tr.top5:hover{background:rgba(61,2
   <div class="nav-item" data-tab="spu"><span class="nav-icon">🏆</span>商品排行</div>
   <div class="nav-item" data-tab="cost"><span class="nav-icon">🏷️</span>货本汇总</div>
   <div class="nav-item" data-tab="ads"><span class="nav-icon">📣</span>广告效率</div>
+  <div class="nav-item" data-tab="inv"><span class="nav-icon">🗃️</span>库存分析</div>
   <div class="nav-item" data-tab="sim"><span class="nav-icon">🧮</span>利润模拟</div>
   <div class="nav-sep"></div>
   <div class="nav-item" data-tab="import"><span class="nav-icon">📂</span>数据导入</div>
@@ -369,6 +380,35 @@ tr.top5{background:var(--green-bg)!important;}tr.top5:hover{background:rgba(61,2
     <div class="grid4" id="adsCards"></div>
     <div class="section overflow" id="spAdsSection" style="display:none"><div class="section-title" id="spAdsTitle"></div><table id="spAdsTable"><thead><tr><th class="l">名称</th><th class="r">花费</th><th class="r">销售</th><th class="r">ROAS</th><th class="r">直接ROAS</th><th class="r">转化</th><th class="l">判定</th></tr></thead><tbody></tbody></table></div>
     <div class="section overflow" id="tkAdsSection" style="display:none"><div class="section-title" id="tkAdsTitle"></div><table id="tkAdsTable"><thead><tr><th class="l">Campaign</th><th class="r">$花费</th><th class="r">$销售</th><th class="r">ROI</th><th class="r">订单</th><th class="l">判定</th></tr></thead><tbody></tbody></table></div>
+  </div>
+
+  <!-- ═══ INVENTORY ═══ -->
+  <div class="page" id="page-inv">
+    <div class="page-header"><div class="page-title">🗃️ 库存分析</div><div class="page-sub" id="invSub">上传库存文件 · 交叉订单数据 · 自动补货预警</div></div>
+    <div class="section" id="invUpload" style="margin-bottom:16px;">
+      <div class="section-title">📤 库存文件导入</div>
+      <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:8px;">
+        <label class="upload-btn" style="padding:7px 16px;border-radius:5px;background:var(--accent);color:#fff;cursor:pointer;font-size:11px;font-weight:600;">选择库存Excel/CSV<input type="file" id="stockFileInput" accept=".xlsx,.xls,.csv" style="display:none"></label>
+        <span id="stockFileName" style="font-size:11px;color:var(--text3);">未选择文件</span>
+        <button id="btnClearStock" class="fbtn" style="font-size:10px;padding:4px 10px;display:none;">清空库存</button>
+      </div>
+      <div id="stockColMapper" style="display:none;margin-top:12px;padding:12px;background:var(--bg2);border-radius:6px;border:1px solid var(--border);"></div>
+    </div>
+    <div id="invContent" style="display:none;">
+      <div class="kpi-row" id="invKPIs"></div>
+      <div class="section" style="margin-top:16px;">
+        <div class="section-title" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;">
+          <span>📊 库存健康度明细</span>
+          <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap;">
+            <select id="invCatFilter" style="font-size:10px;padding:3px 8px;border-radius:4px;border:1px solid var(--border);background:var(--bg2);color:var(--text);"><option value="">全部品类</option></select>
+            <select id="invStatusFilter" style="font-size:10px;padding:3px 8px;border-radius:4px;border:1px solid var(--border);background:var(--bg2);color:var(--text);"><option value="">全部状态</option><option value="断货">断货</option><option value="紧急">紧急(&lt;7天)</option><option value="预警">预警(&lt;14天)</option><option value="充足">充足</option><option value="积压">积压(&gt;90天)</option><option value="无销售数据">无销售数据</option></select>
+            <input id="invSearch" type="text" placeholder="搜索SKU/品名…" style="font-size:10px;padding:3px 8px;border-radius:4px;border:1px solid var(--border);background:var(--bg2);color:var(--text);width:140px;">
+          </div>
+        </div>
+        <div id="invTable" style="margin-top:10px;overflow-x:auto;"></div>
+        <div id="invTableInfo" style="font-size:10px;color:var(--text3);margin-top:6px;"></div>
+      </div>
+    </div>
   </div>
 
   <!-- ═══ SIMULATOR ═══ -->
@@ -615,7 +655,7 @@ function calcCostSummary(_ff,_ft){
 Chart.defaults.font.family="'Plus Jakarta Sans',sans-serif";Chart.defaults.font.size=11;
 
 // ═══ RENDER ALL ═══
-function renderAll(){renderOverview();renderImport();renderDash();renderCat();renderCost();renderSpu();renderAds();renderCfg();
+function renderAll(){renderOverview();renderImport();renderDash();renderCat();renderCost();renderSpu();renderAds();renderInv();renderCfg();
   const pnl=calcPnL(orders);const sb=document.getElementById('statusBar');
   sb.innerHTML=pnl?`${fm(pnl.cnt)} 行 · ${pnl.days} 天\nEBIT ¥${fm(Math.round(pnl.ebit/CFG.ex))}${pnl.matchedCnt>0?' · 精算'+Math.round(pnl.matchedCnt/pnl.cnt*100)+'%':''}\n${getSyncUrl()?'☁️ 已连接':'💾 本地'}`:'无数据';}
 
@@ -900,6 +940,244 @@ function renderAds(){
   if(fTK.length){tkSec.style.display='block';const agg2={};fTK.forEach(a=>{if(!agg2[a.name])agg2[a.name]={name:a.name,spend:0,sales:0,clicks:0,conv:0};const g=agg2[a.name];g.spend+=a.spend;g.sales+=a.sales;g.clicks+=a.clicks;g.conv+=a.conv;});const al2=Object.values(agg2).map(a=>({...a,roas:a.spend>0?a.sales/a.spend:0}));document.getElementById('tkAdsTitle').textContent='TikTok ('+al2.length+'计划 · '+tkDays+'天)';document.querySelector('#tkAdsTable tbody').innerHTML=al2.sort((a,b)=>b.spend-a.spend).slice(0,20).map(a=>`<tr><td class="l" style="max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${a.name}</td><td class="r">$${fm(a.spend,2)}</td><td class="r">$${fm(a.sales,2)}</td><td class="r bold" style="color:${roasColor(a.roas)}">${a.roas.toFixed(2)}</td><td class="r">${fm(Math.round(a.conv))}</td><td class="l">${roasTag(a.roas)}</td></tr>`).join('');}else{tkSec.style.display='none';}
 }
 
+// ═══════════════════ INVENTORY MODULE ═══════════════════
+let stockData=[];try{stockData=JSON.parse(localStorage.getItem('wt_stock')||'[]');}catch(e){}
+function saveStock(){try{localStorage.setItem('wt_stock',JSON.stringify(stockData));}catch(e){}}
+
+function parseStockFile(file){
+  const ext=file.name.split('.').pop().toLowerCase();
+  const reader=new FileReader();
+  reader.onload=function(e){
+    try{
+      let rows=[];
+      if(ext==='csv'){
+        const txt=e.target.result;
+        const lines=txt.split('\n').map(l=>l.split(',').map(c=>c.trim().replace(/^"|"$/g,'')));
+        rows=lines;
+      }else{
+        const wb=XLSX.read(new Uint8Array(e.target.result),{type:'array'});
+        const ws=wb.Sheets[wb.SheetNames[0]];
+        rows=XLSX.utils.sheet_to_json(ws,{header:1,defval:''});
+      }
+      if(rows.length<2){alert('文件为空或仅有表头');return;}
+      showColMapper(rows);
+    }catch(err){alert('解析失败: '+err.message);}
+  };
+  if(ext==='csv')reader.readAsText(file);
+  else reader.readAsArrayBuffer(file);
+}
+
+function showColMapper(rows){
+  const hdr=rows[0].map((h,i)=>({idx:i,name:String(h).trim()}));
+  const sample=rows.slice(1,6);
+  const mapDiv=document.getElementById('stockColMapper');
+  mapDiv.style.display='block';
+  // Auto-detect columns
+  const guess={sku:-1,qty:-1,cat:-1,sub:-1,name:-1};
+  hdr.forEach((h,i)=>{
+    const n=h.name.toLowerCase();
+    if(n.includes('sku')||n.includes('库存sku')||n.includes('编号'))guess.sku=i;
+    if(n.includes('库存量')||n.includes('stock')||n.includes('qty')||n.includes('数量'))guess.qty=i;
+    if(n.includes('分类')&&!n.includes('小'))guess.cat=i;
+    if(n.includes('小类')||n.includes('subcategory'))guess.sub=i;
+    if(n.includes('产品中文名')||n.includes('product')||n.includes('名称')||n.includes('中文'))guess.name=i;
+  });
+  const opts=hdr.map(h=>`<option value="${h.idx}">${h.name||'列'+(h.idx+1)}</option>`).join('');
+  const optNone=`<option value="-1">（不选）</option>`+opts;
+  const sel=(key,req)=>`<select id="stockCol_${key}" style="font-size:11px;padding:3px 6px;border-radius:4px;border:1px solid var(--border);background:var(--bg);color:var(--text);">
+    ${req?opts:optNone}</select>`;
+  mapDiv.innerHTML=`
+    <div style="font-size:11px;font-weight:600;margin-bottom:8px;">📋 列映射（自动识别，请确认）</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:8px;">
+      <div><span style="font-size:10px;color:var(--text3);">SKU列 *</span>${sel('sku',true)}</div>
+      <div><span style="font-size:10px;color:var(--text3);">库存量列 *</span>${sel('qty',true)}</div>
+      <div><span style="font-size:10px;color:var(--text3);">分类列</span>${sel('cat',false)}</div>
+      <div><span style="font-size:10px;color:var(--text3);">小类列</span>${sel('sub',false)}</div>
+      <div><span style="font-size:10px;color:var(--text3);">品名列</span>${sel('name',false)}</div>
+    </div>
+    <div style="margin-top:10px;font-size:10px;color:var(--text3);">预览（前5行）:</div>
+    <div style="overflow-x:auto;margin-top:4px;"><table class="tbl"><tr>${hdr.map(h=>`<th style="font-size:9px;">${h.name||'列'+(h.idx+1)}</th>`).join('')}</tr>
+    ${sample.map(r=>`<tr>${hdr.map(h=>`<td style="font-size:9px;">${r[h.idx]||''}</td>`).join('')}</tr>`).join('')}</table></div>
+    <div style="margin-top:10px;display:flex;gap:8px;">
+      <button id="btnConfirmStock" class="fbtn" style="background:var(--accent);color:#fff;padding:6px 16px;font-weight:600;">✅ 确认导入</button>
+      <button id="btnCancelStock" class="fbtn" style="padding:6px 12px;">取消</button>
+    </div>`;
+  // Set auto-detected values
+  Object.keys(guess).forEach(k=>{
+    const el=document.getElementById('stockCol_'+k);
+    if(el&&guess[k]>=0)el.value=guess[k];
+  });
+  document.getElementById('btnConfirmStock').addEventListener('click',()=>{
+    const skuCol=parseInt(document.getElementById('stockCol_sku').value);
+    const qtyCol=parseInt(document.getElementById('stockCol_qty').value);
+    const catCol=parseInt(document.getElementById('stockCol_cat').value);
+    const subCol=parseInt(document.getElementById('stockCol_sub').value);
+    const nameCol=parseInt(document.getElementById('stockCol_name').value);
+    if(skuCol<0||qtyCol<0){alert('SKU和库存量为必选');return;}
+    stockData=[];
+    for(let i=1;i<rows.length;i++){
+      const r=rows[i];
+      const sku=String(r[skuCol]||'').trim();
+      const qty=parseInt(r[qtyCol])||0;
+      if(!sku)continue;
+      stockData.push({
+        sku:sku,
+        qty:qty,
+        cat:catCol>=0?String(r[catCol]||'').trim():'',
+        sub:subCol>=0?String(r[subCol]||'').trim():'',
+        name:nameCol>=0?String(r[nameCol]||'').trim():''
+      });
+    }
+    saveStock();
+    mapDiv.style.display='none';
+    document.getElementById('btnClearStock').style.display='inline';
+    document.getElementById('stockFileName').textContent=`✅ ${stockData.length}个SKU已导入`;
+    renderInv();
+  });
+  document.getElementById('btnCancelStock').addEventListener('click',()=>{mapDiv.style.display='none';});
+  window._stockRows=rows;
+}
+
+function calcSalesVelocity(){
+  // Calculate daily sales per SKU from orders data
+  const vel={};
+  if(!orders.length)return vel;
+  const now=new Date();
+  // Get date range
+  const dates=orders.map(o=>o.date).sort();
+  const minD=dates[0],maxD=dates[dates.length-1];
+  const totalDays=Math.max(1,Math.round((new Date(maxD)-new Date(minD))/(86400000))+1);
+  // Last 7 and 30 days
+  const d7=new Date(now);d7.setDate(d7.getDate()-7);
+  const d30=new Date(now);d30.setDate(d30.getDate()-30);
+  const fmt=d=>d.toISOString().slice(0,10);
+  const d7s=fmt(d7),d30s=fmt(d30);
+  orders.forEach(o=>{
+    const sku=o.sku;
+    if(!vel[sku])vel[sku]={total:0,d7:0,d30:0,totalDays:totalDays,cnt7:0,cnt30:0};
+    const qty=o.qty||1;
+    vel[sku].total+=qty;
+    if(o.date>=d7s){vel[sku].d7+=qty;vel[sku].cnt7++;}
+    if(o.date>=d30s){vel[sku].d30+=qty;vel[sku].cnt30++;}
+  });
+  // Calculate daily rates
+  Object.values(vel).forEach(v=>{
+    v.dailyAll=v.total/v.totalDays;
+    v.daily7=v.d7/7;
+    v.daily30=v.d30/30;
+    // Use best available: 7-day if enough data, else 30-day, else all-time
+    v.daily=v.d7>=3?v.daily7:v.d30>=3?v.daily30:v.dailyAll;
+  });
+  return vel;
+}
+
+function renderInv(){
+  const content=document.getElementById('invContent');
+  const sub=document.getElementById('invSub');
+  if(!stockData.length){
+    content.style.display='none';
+    sub.textContent='上传库存文件 · 交叉订单数据 · 自动补货预警';
+    document.getElementById('btnClearStock').style.display='none';
+    return;
+  }
+  content.style.display='block';
+  document.getElementById('btnClearStock').style.display='inline';
+  document.getElementById('stockFileName').textContent=`✅ ${stockData.length}个SKU已导入`;
+  
+  const vel=calcSalesVelocity();
+  const hasOrders=orders.length>0;
+  
+  // Enrich stock with velocity
+  const enriched=stockData.map(s=>{
+    const v=vel[s.sku]||null;
+    const daily=v?v.daily:0;
+    const daysLeft=daily>0?Math.round(s.qty/daily):s.qty>0?9999:0;
+    let status,statusClass;
+    if(s.qty===0){status='断货';statusClass='inv-oos';}
+    else if(!v||daily===0){status='无销售数据';statusClass='inv-nosale';}
+    else if(daysLeft<7){status='紧急';statusClass='inv-critical';}
+    else if(daysLeft<14){status='预警';statusClass='inv-warn';}
+    else if(daysLeft>90){status='积压';statusClass='inv-over';}
+    else{status='充足';statusClass='inv-ok';}
+    return {...s,daily,daysLeft,status,statusClass,vel:v};
+  });
+  
+  // KPIs
+  const totalSKU=enriched.length;
+  const totalQty=enriched.reduce((s,e)=>s+e.qty,0);
+  const oos=enriched.filter(e=>e.status==='断货').length;
+  const critical=enriched.filter(e=>e.status==='紧急').length;
+  const warn=enriched.filter(e=>e.status==='预警').length;
+  const over=enriched.filter(e=>e.status==='积压').length;
+  
+  document.getElementById('invKPIs').innerHTML=`
+    <div class="kpi"><div class="kpi-label">总SKU</div><div class="kpi-val">${totalSKU}</div></div>
+    <div class="kpi"><div class="kpi-label">总库存</div><div class="kpi-val">${fmtN(totalQty)}</div></div>
+    <div class="kpi"><div class="kpi-label">断货</div><div class="kpi-val" style="color:#e53935">${oos}</div></div>
+    <div class="kpi"><div class="kpi-label">紧急(&lt;7天)</div><div class="kpi-val" style="color:#ff6f00">${critical}</div></div>
+    <div class="kpi"><div class="kpi-label">预警(&lt;14天)</div><div class="kpi-val" style="color:#f9a825">${warn}</div></div>
+    <div class="kpi"><div class="kpi-label">积压(&gt;90天)</div><div class="kpi-val" style="color:#78909c">${over}</div></div>`;
+  
+  sub.textContent=`${totalSKU}个SKU · 总库存${fmtN(totalQty)} · ${hasOrders?'已关联订单数据':'⚠️ 未导入订单，无法计算销售速率'}`;
+  
+  // Populate category filter
+  const cats=[...new Set(enriched.map(e=>e.cat).filter(Boolean))].sort();
+  const catSel=document.getElementById('invCatFilter');
+  const curCat=catSel.value;
+  catSel.innerHTML='<option value="">全部品类</option>'+cats.map(c=>`<option value="${c}">${c}</option>`).join('');
+  catSel.value=curCat;
+  
+  // Apply filters
+  const fCat=document.getElementById('invCatFilter').value;
+  const fStatus=document.getElementById('invStatusFilter').value;
+  const fSearch=document.getElementById('invSearch').value.toLowerCase();
+  
+  let filtered=enriched;
+  if(fCat)filtered=filtered.filter(e=>e.cat===fCat);
+  if(fStatus)filtered=filtered.filter(e=>e.status===fStatus);
+  if(fSearch)filtered=filtered.filter(e=>(e.sku+' '+e.name+' '+e.cat+' '+e.sub).toLowerCase().includes(fSearch));
+  
+  // Sort: OOS first, then critical, then warn, then by daysLeft asc
+  const statusOrder={'断货':0,'紧急':1,'预警':2,'充足':3,'无销售数据':4,'积压':5};
+  filtered.sort((a,b)=>(statusOrder[a.status]||9)-(statusOrder[b.status]||9)||a.daysLeft-b.daysLeft);
+  
+  // Render table
+  const statusBadge=(s,cls)=>`<span class="inv-badge ${cls}">${s}</span>`;
+  const tbl=document.getElementById('invTable');
+  tbl.innerHTML=`<table class="tbl"><thead><tr>
+    <th>状态</th><th>SKU</th><th>品名</th><th>分类</th><th>小类</th>
+    <th>库存</th><th>日销</th><th>可售天数</th>
+  </tr></thead><tbody>
+  ${filtered.slice(0,200).map(e=>`<tr class="${e.statusClass}">
+    <td>${statusBadge(e.status,e.statusClass)}</td>
+    <td style="font-family:'JetBrains Mono',monospace;font-size:10px;">${e.sku}</td>
+    <td style="max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="${e.name}">${e.name||'-'}</td>
+    <td>${e.cat||'-'}</td><td>${e.sub||'-'}</td>
+    <td class="r">${fmtN(e.qty)}</td>
+    <td class="r">${e.daily>0?e.daily.toFixed(1):'-'}</td>
+    <td class="r" style="font-weight:600;">${e.qty===0?'断货':e.daily>0?fmtN(e.daysLeft)+'天':'-'}</td>
+  </tr>`).join('')}</tbody></table>`;
+  
+  document.getElementById('invTableInfo').textContent=`显示 ${Math.min(filtered.length,200)} / ${filtered.length} 条${filtered.length>200?' (最多显示200条)':''}`;
+}
+
+// Inventory filter handlers
+['invCatFilter','invStatusFilter'].forEach(id=>{
+  document.getElementById(id).addEventListener('change',renderInv);
+});
+document.getElementById('invSearch').addEventListener('input',renderInv);
+document.getElementById('stockFileInput').addEventListener('change',e=>{
+  const f=e.target.files[0];if(!f)return;
+  document.getElementById('stockFileName').textContent=f.name;
+  parseStockFile(f);e.target.value='';
+});
+document.getElementById('btnClearStock').addEventListener('click',()=>{
+  if(!confirm('清空库存数据？'))return;
+  stockData=[];saveStock();renderInv();
+  document.getElementById('stockFileName').textContent='未选择文件';
+});
+// ═══════════════════ END INVENTORY ═══════════════════
+
 function renderCfg(){
   const inp=(id,val,w)=>`<input id="${id}" type="number" value="${val}" style="width:${w||'80px'};background:var(--input-bg);border:1px solid var(--border);border-radius:4px;color:var(--accent2);font-family:'JetBrains Mono',monospace;font-size:13px;padding:4px 8px;text-align:right" step="any">`;
   document.getElementById('cfgParams').innerHTML=`<div class="section-title">计算参数</div><table><tbody>
@@ -953,7 +1231,7 @@ function calcSim(){
 }
 
 // ═══ EVENTS ═══
-document.querySelectorAll('.nav-item').forEach(el=>{el.addEventListener('click',()=>{document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));el.classList.add('active');document.getElementById('page-'+el.dataset.tab).classList.add('active');const t=el.dataset.tab;if(t==='dash')setTimeout(renderDash,50);if(t==='cat')setTimeout(renderCat,50);if(t==='overview')setTimeout(renderOverview,50);if(t==='cost')setTimeout(renderCost,50);if(t==='spu')setTimeout(renderSpu,50);});});
+document.querySelectorAll('.nav-item').forEach(el=>{el.addEventListener('click',()=>{document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));el.classList.add('active');document.getElementById('page-'+el.dataset.tab).classList.add('active');const t=el.dataset.tab;if(t==='dash')setTimeout(renderDash,50);if(t==='cat')setTimeout(renderCat,50);if(t==='overview')setTimeout(renderOverview,50);if(t==='cost')setTimeout(renderCost,50);if(t==='spu')setTimeout(renderSpu,50);if(t==='inv')setTimeout(renderInv,50);});});
 
 document.querySelectorAll('.theme-btn').forEach(b=>{b.addEventListener('click',()=>setTheme(b.dataset.theme));});
 
