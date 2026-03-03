@@ -1072,6 +1072,7 @@ function calcSalesVelocity(){
 }
 
 function renderInv(){
+  try{
   const content=document.getElementById('invContent');
   const sub=document.getElementById('invSub');
   if(!stockData.length){
@@ -1112,13 +1113,13 @@ function renderInv(){
   
   document.getElementById('invKPIs').innerHTML=`
     <div class="kpi"><div class="kpi-label">总SKU</div><div class="kpi-val">${totalSKU}</div></div>
-    <div class="kpi"><div class="kpi-label">总库存</div><div class="kpi-val">${fmtN(totalQty)}</div></div>
+    <div class="kpi"><div class="kpi-label">总库存</div><div class="kpi-val">${fm(totalQty)}</div></div>
     <div class="kpi"><div class="kpi-label">断货</div><div class="kpi-val" style="color:#e53935">${oos}</div></div>
     <div class="kpi"><div class="kpi-label">紧急(&lt;7天)</div><div class="kpi-val" style="color:#ff6f00">${critical}</div></div>
     <div class="kpi"><div class="kpi-label">预警(&lt;14天)</div><div class="kpi-val" style="color:#f9a825">${warn}</div></div>
     <div class="kpi"><div class="kpi-label">积压(&gt;90天)</div><div class="kpi-val" style="color:#78909c">${over}</div></div>`;
   
-  sub.textContent=`${totalSKU}个SKU · 总库存${fmtN(totalQty)} · ${hasOrders?'已关联订单数据':'⚠️ 未导入订单，无法计算销售速率'}`;
+  sub.textContent=`${totalSKU}个SKU · 总库存${fm(totalQty)} · ${hasOrders?'已关联订单数据':'⚠️ 未导入订单，无法计算销售速率'}`;
   
   // Populate category filter
   const cats=[...new Set(enriched.map(e=>e.cat).filter(Boolean))].sort();
@@ -1153,13 +1154,13 @@ function renderInv(){
     <td style="font-family:'JetBrains Mono',monospace;font-size:10px;">${e.sku}</td>
     <td style="max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="${e.name}">${e.name||'-'}</td>
     <td>${e.cat||'-'}</td><td>${e.sub||'-'}</td>
-    <td class="r">${fmtN(e.qty)}</td>
+    <td class="r">${fm(e.qty)}</td>
     <td class="r">${e.daily>0?e.daily.toFixed(1):'-'}</td>
-    <td class="r" style="font-weight:600;">${e.qty===0?'断货':e.daily>0?fmtN(e.daysLeft)+'天':'-'}</td>
+    <td class="r" style="font-weight:600;">${e.qty===0?'断货':e.daily>0?fm(e.daysLeft)+'天':'-'}</td>
   </tr>`).join('')}</tbody></table>`;
   
   document.getElementById('invTableInfo').textContent=`显示 ${Math.min(filtered.length,200)} / ${filtered.length} 条${filtered.length>200?' (最多显示200条)':''}`;
-}
+}catch(err){console.error("renderInv:",err);try{document.getElementById("invKPIs").innerHTML="<div style="color:#c62828;padding:12px;background:#ffebee;border-radius:6px">Error: "+err.message+"</div>";document.getElementById("invContent").style.display="block";}catch(e){}}}
 
 // Inventory filter handlers
 ['invCatFilter','invStatusFilter'].forEach(id=>{
