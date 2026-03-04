@@ -56,7 +56,7 @@
 [data-theme="light"] .drop{border-color:var(--border3);}
 
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
-body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--text);font-size:13px;line-height:1.5;display:flex;height:100vh;overflow:hidden;transition:background .3s,color .3s;}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--text);font-size:13.5px;line-height:1.55;display:flex;height:100vh;overflow:hidden;transition:background .3s,color .3s;}
 
 /* Sidebar */
 #sidebar{width:196px;flex-shrink:0;display:flex;flex-direction:column;background:var(--sidebar-bg);border-right:1px solid var(--border);padding:16px 0;transition:background .3s;}
@@ -64,7 +64,7 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(-
 .logo h2{font-size:12px;font-weight:800;letter-spacing:2.5px;color:#fff;text-transform:uppercase;}
 .logo-sub{font-size:10px;color:var(--text3);margin-top:3px;letter-spacing:.5px;}
 .logo-line{height:1px;background:linear-gradient(90deg,var(--accent),transparent);margin:0 18px 6px;opacity:.3;}
-.nav-item{padding:9px 18px;cursor:pointer;font-size:11.5px;font-weight:500;color:var(--text2);display:flex;align-items:center;gap:9px;border-left:2px solid transparent;transition:all .15s;user-select:none;}
+.nav-item{padding:9px 18px;cursor:pointer;font-size:12px;font-weight:500;color:var(--text2);display:flex;align-items:center;gap:9px;border-left:2px solid transparent;transition:all .15s;user-select:none;}
 .nav-item:hover{color:var(--text);background:var(--sidebar-active);}
 .nav-item.active{color:var(--accent2);background:var(--sidebar-active);border-left-color:var(--accent);}
 .nav-icon{font-size:14px;width:18px;text-align:center;}
@@ -84,8 +84,8 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(-
 .page.active{display:block;}
 @keyframes fadeIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
 .page-header{margin-bottom:18px;}
-.page-title{font-size:17px;font-weight:700;letter-spacing:-.2px;}
-.page-sub{font-size:11px;color:var(--text3);margin-top:3px;font-family:'JetBrains Mono',monospace;}
+.page-title{font-size:18px;font-weight:700;letter-spacing:-.2px;}
+.page-sub{font-size:11.5px;color:var(--text3);margin-top:3px;font-family:'JetBrains Mono',monospace;}
 
 /* Grids */
 .grid5{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:14px;}
@@ -97,28 +97,28 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(-
 /* Cards */
 .card{background:var(--surface);border-radius:10px;padding:14px 16px;border:1px solid var(--border);position:relative;overflow:hidden;transition:all .2s;box-shadow:var(--card-shadow);}
 .card:hover{border-color:var(--border2);transform:translateY(-1px);box-shadow:var(--hover-shadow);}
-.card .label{font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:.7px;font-weight:600;margin-bottom:5px;}
-.card .value{font-size:20px;font-weight:700;font-family:'JetBrains Mono',monospace;letter-spacing:-.5px;}
-.card .sub{font-size:10px;color:var(--text3);margin-top:3px;font-family:'JetBrains Mono',monospace;}
-.card .explain{font-size:10px;color:var(--text3);margin-top:5px;line-height:1.4;font-style:italic;opacity:.7;}
+.card .label{font-size:10.5px;color:var(--text3);text-transform:uppercase;letter-spacing:.7px;font-weight:600;margin-bottom:5px;}
+.card .value{font-size:21px;font-weight:700;font-family:'JetBrains Mono',monospace;letter-spacing:-.5px;}
+.card .sub{font-size:10.5px;color:var(--text3);margin-top:3px;font-family:'JetBrains Mono',monospace;}
+.card .explain{font-size:10.5px;color:var(--text3);margin-top:5px;line-height:1.4;font-style:italic;opacity:.7;}
 .card-glow{position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--accent),transparent);opacity:.4;}
 .card-wide{grid-column:1/-1;display:flex;align-items:center;gap:18px;padding:12px 16px;}
 .card-wide .cw-item{flex:1;text-align:center;}
-.card-wide .cw-label{font-size:10px;color:var(--text3);margin-bottom:3px;text-transform:uppercase;letter-spacing:.5px;}
-.card-wide .cw-val{font-size:15px;font-weight:700;font-family:'JetBrains Mono',monospace;}
-.card-wide .cw-sub{font-size:10px;color:var(--text3);margin-top:2px;}
+.card-wide .cw-label{font-size:10.5px;color:var(--text3);margin-bottom:3px;text-transform:uppercase;letter-spacing:.5px;}
+.card-wide .cw-val{font-size:16px;font-weight:700;font-family:'JetBrains Mono',monospace;}
+.card-wide .cw-sub{font-size:10.5px;color:var(--text3);margin-top:2px;}
 .card-wide .cw-sep{width:1px;height:32px;background:var(--border2);}
 
 /* Section */
 .section{background:var(--surface);border-radius:10px;padding:16px;border:1px solid var(--border);margin-bottom:12px;box-shadow:var(--card-shadow);transition:all .3s;}
-.section-title{font-weight:600;font-size:12px;color:var(--text2);margin-bottom:10px;letter-spacing:.3px;}
+.section-title{font-weight:600;font-size:13px;color:var(--text2);margin-bottom:10px;letter-spacing:.3px;}
 
 /* Tables */
 .overflow{overflow-x:auto;-webkit-overflow-scrolling:touch;}
-table{width:100%;border-collapse:collapse;font-size:12px;}
-th{padding:7px 10px;font-weight:600;white-space:nowrap;text-align:left;color:var(--text3);font-size:10px;text-transform:uppercase;letter-spacing:.5px;border-bottom:1px solid var(--border2);position:sticky;top:0;z-index:1;background:var(--surface);}
+table{width:100%;border-collapse:collapse;font-size:12.5px;}
+th{padding:8px 10px;font-weight:600;white-space:nowrap;text-align:left;color:var(--text3);font-size:10.5px;text-transform:uppercase;letter-spacing:.5px;border-bottom:1px solid var(--border2);position:sticky;top:0;z-index:1;background:var(--surface);}
 th.r{text-align:right;}td{padding:7px 10px;border-bottom:1px solid var(--border);transition:background .1s;}
-td.r{text-align:right;font-family:'JetBrains Mono',monospace;font-size:12px;}td.l{text-align:left;}
+td.r{text-align:right;font-family:'JetBrains Mono',monospace;font-size:12.5px;}td.l{text-align:left;}
 tr:hover{background:var(--accent-bg);}
 tr.top5{background:var(--green-bg)!important;}tr.top5:hover{background:rgba(61,217,160,.12)!important;}
 
@@ -128,9 +128,12 @@ tr.top5{background:var(--green-bg)!important;}tr.top5:hover{background:rgba(61,2
 .filter-bar input[type="date"]{background:var(--input-bg);border:1px solid var(--border2);border-radius:5px;padding:4px 8px;color:var(--text);font-family:'JetBrains Mono',monospace;font-size:11px;outline:none;}
 .filter-bar input[type="date"]:focus{border-color:var(--accent);}
 [data-theme="dark"] .filter-bar input[type="date"]::-webkit-calendar-picker-indicator,[data-theme="blue"] .filter-bar input[type="date"]::-webkit-calendar-picker-indicator{filter:invert(.7);}
-.fbtn{padding:4px 9px;border-radius:5px;border:1px solid var(--border);background:transparent;color:var(--text2);font-size:10px;font-weight:600;cursor:pointer;font-family:inherit;transition:all .12s;}
+.fbtn{padding:4px 10px;border-radius:5px;border:1px solid var(--border);background:transparent;color:var(--text2);font-size:11px;font-weight:600;cursor:pointer;font-family:inherit;transition:all .12s;}
 .fbtn:hover{border-color:var(--accent);color:var(--accent2);}
 .fbtn.active{background:var(--accent);color:#fff;border-color:var(--accent);}
+.ftag{display:inline-block;padding:4px 11px;border-radius:12px;font-size:11px;font-weight:600;cursor:pointer;border:1px solid var(--border);color:var(--text3);background:transparent;transition:all .15s;user-select:none;}
+.ftag:hover{border-color:var(--accent);color:var(--accent);}
+.ftag.active{background:var(--accent);color:#fff;border-color:var(--accent);}
 .filter-sep{width:1px;height:18px;background:var(--border2);margin:0 3px;}
 .filter-info{font-size:11px;color:var(--accent2);font-family:'JetBrains Mono',monospace;margin-left:auto;}
 
@@ -247,36 +250,36 @@ tr.top5{background:var(--green-bg)!important;}tr.top5:hover{background:rgba(61,2
   body{flex-direction:column;}
   #sidebar{width:100%;flex-direction:row;padding:0;overflow-x:auto;flex-shrink:0;height:auto;border-right:none;border-bottom:1px solid var(--border);}
   .logo,.logo-line,#sidebar .status,.nav-sep,.theme-bar{display:none;}.mobile-only{display:block!important;}
-  .nav-item{padding:10px 12px;white-space:nowrap;font-size:10px;border-left:none;border-bottom:2px solid transparent;}
+  .nav-item{padding:10px 12px;white-space:nowrap;font-size:10.5px;border-left:none;border-bottom:2px solid transparent;}
   .nav-item.active{border-left:none;border-bottom-color:var(--accent);}
   #main{padding:12px;height:calc(100vh - 46px);}
-  .grid4,.grid5,.kpi-row{grid-template-columns:repeat(2,1fr);gap:6px;}
-  .grid2,.grid2e,.sim-grid,.cost-summary-grid{grid-template-columns:1fr;gap:8px;}
-  .card{padding:10px;}.card .value{font-size:16px;}
-  .page-title{font-size:14px;}.section{padding:10px;}
-  .chart-box{height:180px;}.chart-sm{height:140px;}
+  .grid4,.grid5,.kpi-row{grid-template-columns:repeat(2,1fr);gap:8px;}
+  .grid2,.grid2e,.sim-grid,.cost-summary-grid{grid-template-columns:1fr;gap:10px;}
+  .card{padding:12px;}.card .value{font-size:17px;}.card .label{font-size:10px;}.card .sub{font-size:10px;}
+  .page-title{font-size:15px;}.page-sub{font-size:10px;}.section{padding:12px;}.section-title{font-size:12px;}
+  .chart-box{height:200px;}.chart-sm{height:160px;}
   .drop{padding:24px 14px;}
-  table{font-size:11px;}th,td{padding:5px 6px;}
+  table{font-size:11.5px;}th{font-size:10px;padding:6px 8px;}td{padding:6px 8px;}
   .filter-bar{padding:8px 10px;gap:5px;}.filter-info{margin-left:0;width:100%;}
-  .card-wide{flex-wrap:wrap;gap:10px;}.card-wide .cw-sep{display:none;}.card-wide .cw-item{min-width:70px;}
+  .card-wide{flex-wrap:wrap;gap:10px;}.card-wide .cw-sep{display:none;}.card-wide .cw-item{min-width:70px;}.card-wide .cw-val{font-size:14px;}.card-wide .cw-label{font-size:9.5px;}
   .price-suggest{grid-template-columns:1fr;}
   .pf-bar{flex-wrap:wrap;padding:6px 8px;gap:4px;}
-  .pf-bar .fbtn{font-size:9px;padding:3px 6px;}
-  .pf-bar label{font-size:10px;}
-  .pf-bar input[type="date"]{width:110px;font-size:10px;padding:2px 4px;}
+  .pf-bar .fbtn{font-size:10px;padding:3px 7px;}
+  .pf-bar label{font-size:10.5px;}
+  .pf-bar input[type="date"]{width:110px;font-size:10.5px;padding:2px 4px;}
   .filter-sep{display:none;}
   .grid3{grid-template-columns:1fr;gap:8px;}
   .tbl-wrap table{white-space:nowrap;}
   .page-header{padding:0 0 8px;}
-  .page-sub{font-size:10px;}
-  .section-title{font-size:11px;}
+  .fbtn{font-size:10px;padding:3px 8px;}
+  .ftag{font-size:10px;padding:3px 8px;}
   .kpi-mini{padding:8px;}
   .kpi-mini .km-val{font-size:14px;}
 }
-.pf-bar{padding:8px 16px;gap:6px;font-size:11px;border-bottom:1px solid var(--border);margin:-8px -20px 12px;padding:8px 20px;}
-.pf-bar .fbtn{padding:3px 10px;font-size:11px;}
-.pf-bar label{font-size:11px;}
-.pf-bar input[type="date"]{font-size:11px;padding:2px 6px;}
+.pf-bar{padding:8px 16px;gap:6px;font-size:12px;border-bottom:1px solid var(--border);margin:-8px -20px 12px;padding:8px 20px;}
+.pf-bar .fbtn{padding:4px 10px;font-size:11.5px;}
+.pf-bar label{font-size:11.5px;}
+.pf-bar input[type="date"]{font-size:11.5px;padding:2px 6px;}
 .inv-badge{display:inline-block;padding:2px 8px;border-radius:10px;font-size:10px;font-weight:600;white-space:nowrap;}
 .inv-badge.inv-oos{background:#ffcdd2;color:#c62828;}
 .inv-badge.inv-critical{background:#ffe0b2;color:#e65100;}
@@ -308,6 +311,10 @@ tr.inv-warn{background:#fffde7 !important;}
   <div class="nav-item" data-tab="sp"><span class="nav-icon">🟠</span>Shopee</div>
 <div class="nav-item" data-tab="tk"><span class="nav-icon">🔵</span>TikTok</div>
 <div class="nav-item" data-tab="inv"><span class="nav-icon">🗃️</span>库存分析</div>
+  <div class="nav-item" data-tab="sku"><span class="nav-icon">📦</span>SKU分析</div>
+  <div class="nav-item" data-tab="lookup"><span class="nav-icon">🔍</span>订单查询</div>
+  <div class="nav-item" data-tab="anomaly"><span class="nav-icon">⚠️</span>异常检测</div>
+  <div class="nav-item" data-tab="trend"><span class="nav-icon">📈</span>趋势分析</div>
   <div class="nav-item" data-tab="sim"><span class="nav-icon">🧮</span>利润模拟</div>
   <div class="nav-sep"></div>
   <div class="nav-item" data-tab="import"><span class="nav-icon">📂</span>数据导入</div>
@@ -376,7 +383,7 @@ tr.inv-warn{background:#fffde7 !important;}
     <div class="kpi-row" id="spuSummaryCards"></div>
     <div class="section"><div class="section-title">SPU排行 TOP8 净利 (¥)</div><div class="chart-box"><canvas id="chartSpu"></canvas></div></div>
     <div class="section overflow" style="max-height:600px"><table id="spuTable"><thead><tr>
-      <th class="r">#</th><th class="l">SPU</th><th class="l">品名</th><th class="l">品类</th>
+      <th class="r">#</th><th></th><th class="l">SPU</th><th class="l">品名</th><th class="l">品类</th>
       <th class="r">订单</th><th class="r">件数</th><th class="r">GMV ¥</th>
       <th class="r">货本 ¥</th><th class="r">毛利 ¥</th><th class="r">毛利率</th>
       <th class="r">毛利占比</th><th class="r">日均 ¥</th>
@@ -459,6 +466,139 @@ tr.inv-warn{background:#fffde7 !important;}
   </div>
 
   <!-- ═══ SIMULATOR ═══ -->
+  <!-- ═══ SKU PROFIT RANKING ═══ -->
+  <div class="page" id="page-sku">
+    <div class="page-header"><div class="page-title">📦 SKU级利润排名</div><div class="page-sub" id="skuSub">按SKU规格维度分析利润 · 比SPU更细</div></div>
+    <div class="filter-bar pf-bar" id="pf-sku">
+      <label>日期</label>
+      <input type="date" class="pf-from" data-pf="sku">
+      <span>→</span>
+      <input type="date" class="pf-to" data-pf="sku">
+      <div class="filter-sep"></div>
+      <button class="fbtn pf-btn active" data-pf="sku" data-range="all">全部</button>
+      <button class="fbtn pf-btn" data-pf="sku" data-range="thisMonth">本月</button>
+      <button class="fbtn pf-btn" data-pf="sku" data-range="lastMonth">上月</button>
+      <button class="fbtn pf-btn" data-pf="sku" data-range="m-2">前2月</button>
+      <div class="filter-sep"></div>
+      <input type="text" id="skuSearch" placeholder="🔍 搜索SKU/品名..." style="background:var(--input-bg);border:1px solid var(--border);border-radius:5px;padding:4px 8px;color:var(--text);font-size:11px;width:160px;outline:none;">
+    </div>
+    <div class="kpi-row" id="skuKPIs"></div>
+    <div class="section"><div class="tbl-wrap"><table id="skuTable"><thead><tr>
+      <th>#</th><th>图</th><th class="l">SKU</th><th class="l">品名</th><th class="l">品类</th>
+      <th class="r">单</th><th class="r">件</th><th class="r">ASP¥</th><th class="r">成本¥</th>
+      <th class="r">毛利¥</th><th class="r">率</th><th class="r">占比</th><th class="r">日均¥</th>
+    </tr></thead><tbody></tbody></table></div></div>
+  </div>
+
+  <!-- ═══ ORDER LOOKUP ═══ -->
+  <div class="page" id="page-lookup">
+    <div class="page-header"><div class="page-title">🔍 订单利润查询</div><div class="page-sub">输入订单号查看详情，或用SKU筛选订单列表</div></div>
+    <div class="section" style="max-width:750px;">
+      <div style="display:flex;gap:8px;margin-bottom:10px;">
+        <input type="text" id="lookupInput" placeholder="输入订单号查询详情..." style="flex:1;background:var(--input-bg);border:1px solid var(--border2);border-radius:8px;padding:10px 14px;color:var(--text);font-family:'JetBrains Mono',monospace;font-size:13px;outline:none;">
+        <button onclick="doLookup()" class="btn btn-accent" style="padding:10px 20px;">查询</button>
+      </div>
+      <div id="lookupResult" style="font-size:12px;"></div>
+    </div>
+    <div class="section" style="margin-top:14px;">
+      <div class="flex-between" style="margin-bottom:10px;">
+        <span class="section-title" style="margin-bottom:0">订单列表 <span id="lookupCount" style="font-size:11px;color:var(--text3);font-weight:400"></span></span>
+        <div class="flex-gap" style="gap:6px;flex-wrap:wrap;align-items:center;">
+          <input type="text" id="skuFilterInput" placeholder="SKU筛选..." oninput="renderLookupRecent()" style="width:140px;font-size:10px;padding:4px 8px;border-radius:12px;border:1px solid var(--border);background:var(--bg);color:var(--text);font-family:'JetBrains Mono',monospace;">
+          <span class="ftag active" data-lf="all" onclick="setLookupFilter('all',this)">全部</span>
+          <span class="ftag" data-lf="1s" onclick="setLookupFilter('1s',this)">单品单量</span>
+          <span class="ftag" data-lf="1m" onclick="setLookupFilter('1m',this)">单品多量</span>
+          <span class="ftag" data-lf="ms" onclick="setLookupFilter('ms',this)">多品单量</span>
+          <span class="ftag" data-lf="mm" onclick="setLookupFilter('mm',this)">多品多量</span>
+          <select id="lookupSort" onchange="renderLookupRecent()" style="font-size:10px;padding:3px 6px;border-radius:4px;border:1px solid var(--border);background:var(--bg);color:var(--text);">
+            <option value="rev">按金额↓</option>
+            <option value="date">按日期↓</option>
+            <option value="profit">按毛利↓</option>
+          </select>
+        </div>
+      </div>
+      <div class="tbl-wrap"><table id="lookupRecent"><thead><tr>
+        <th>订单号</th><th>日期</th><th>平台</th><th class="l">SKU</th><th class="l">品名</th>
+        <th class="r">件</th><th class="r">售价IDR</th><th class="r">实收¥</th><th class="r">成本¥</th>
+        <th class="r">毛利¥</th><th class="r">率</th><th class="c">类型</th>
+      </tr></thead><tbody></tbody></table></div>
+    </div>
+  </div>
+
+  <!-- ═══ ANOMALY DETECTION ═══ -->
+  <div class="page" id="page-anomaly">
+    <div class="page-header"><div class="page-title">⚠️ 异常订单检测</div><div class="page-sub">自动标记收入异常/疑似刷单/价格偏差订单</div></div>
+    <div class="kpi-row" id="anomalyKPIs"></div>
+    <div class="section">
+      <div class="flex-between" style="margin-bottom:10px;">
+        <span class="section-title" style="margin-bottom:0">异常订单列表</span>
+        <div class="flex-gap">
+          <select id="anomalyType" style="font-size:11px;padding:3px 8px;border-radius:5px;border:1px solid var(--border);background:var(--bg);color:var(--text);">
+            <option value="">全部类型</option>
+            <option value="rev_low">收入异常低</option>
+            <option value="rev_high">收入异常高</option>
+            <option value="zero_cost">无成本匹配</option>
+            <option value="negative">毛利为负</option>
+            <option value="zero_cost">无成本匹配</option>
+          </select>
+        </div>
+      </div>
+      <div class="tbl-wrap"><table id="anomalyTable"><thead><tr>
+        <th>类型</th><th>订单号</th><th>日期</th><th>平台</th><th class="l">SKU</th>
+        <th class="r">售价IDR</th><th class="r">成本¥</th><th class="r">毛利¥</th><th class="l">说明</th>
+      </tr></thead><tbody></tbody></table></div>
+    </div>
+  </div>
+
+  <!-- ═══ TREND ANALYSIS ═══ -->
+  <div class="page" id="page-trend">
+    <div class="page-header"><div class="page-title">📈 趋势分析</div><div class="page-sub">GMV/利润/客单价趋势 · 广告ROI归因</div></div>
+    <div class="filter-bar pf-bar" id="pf-trend">
+      <label>日期</label>
+      <input type="date" class="pf-from" data-pf="trend">
+      <span>→</span>
+      <input type="date" class="pf-to" data-pf="trend">
+      <div class="filter-sep"></div>
+      <button class="fbtn pf-btn active" data-pf="trend" data-range="all">全部</button>
+      <button class="fbtn pf-btn" data-pf="trend" data-range="30">30天</button>
+      <button class="fbtn pf-btn" data-pf="trend" data-range="thisMonth">本月</button>
+      <button class="fbtn pf-btn" data-pf="trend" data-range="lastMonth">上月</button>
+      <div class="filter-sep"></div>
+      <select id="trendGranularity" style="font-size:11px;padding:3px 8px;border-radius:5px;border:1px solid var(--border);background:var(--bg);color:var(--text);">
+        <option value="day">按日</option>
+        <option value="week">按周</option>
+        <option value="month">按月</option>
+      </select>
+      <div class="filter-sep"></div>
+      <span class="ftag active" data-tp="all" onclick="setTrendPlat('all',this)">全平台</span>
+      <span class="ftag" data-tp="SP" onclick="setTrendPlat('SP',this)">Shopee</span>
+      <span class="ftag" data-tp="TK" onclick="setTrendPlat('TK',this)">TikTok</span>
+    </div>
+    <div class="grid2e">
+      <div class="section"><div class="section-title">GMV & 净利趋势</div><div class="chart-box"><canvas id="chartTrendGMV"></canvas></div></div>
+      <div class="section"><div class="section-title">订单量 & 客单价趋势</div><div class="chart-box"><canvas id="chartTrendASP"></canvas></div></div>
+    </div>
+    <div class="grid2e">
+      <div class="section"><div class="section-title">🏷️ 客单价分布（订单占比）</div><div class="chart-box"><canvas id="chartASPDist"></canvas></div></div>
+      <div class="section"><div class="section-title">📈 广告消耗 & 广告销售趋势</div><div class="chart-box"><canvas id="chartAdTrend"></canvas></div></div>
+    </div>
+    <div class="section">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap;">
+        <div class="section-title" style="margin:0">📈 广告计划明细</div>
+        <div style="display:flex;gap:4px;">
+          <span class="ftag active" data-ap="all" onclick="setAdPlatform('all',this)">全平台</span>
+          <span class="ftag" data-ap="SP" onclick="setAdPlatform('SP',this)">Shopee</span>
+          <span class="ftag" data-ap="TK" onclick="setAdPlatform('TK',this)">TikTok</span>
+        </div>
+        <span id="adCampaignCount" style="font-size:10px;color:var(--text3)"></span>
+      </div>
+      <div class="tbl-wrap"><table id="adROITable"><thead><tr>
+        <th class="l">广告计划</th><th class="c" style="width:36px">平台</th><th class="r">花费¥</th><th class="r">广告销售¥</th>
+        <th class="r">ROAS</th><th class="r">点击</th><th class="r">转化</th><th class="r">CPC¥</th><th class="r">CVR</th><th>判定</th>
+      </tr></thead><tbody></tbody></table></div>
+    </div>
+  </div>
+
   <div class="page" id="page-sim">
     <div class="page-header"><div class="page-title">🧮 新品利润模拟器</div><div class="page-sub">输入成本和售价 · 实时计算盈亏 · 反算建议定价</div></div>
     <div class="sim-grid">
@@ -528,6 +668,27 @@ tr.inv-warn{background:#fffde7 !important;}
       <div class="section" id="cfgParams"></div>
       <div class="section" id="cfgMargins"></div>
     </div>
+    <div class="section" id="cfgImages" style="margin-top:10px">
+      <div class="section-title">🖼️ 商品图片管理 <span style="font-size:10px;color:var(--text3);font-weight:400">已绑定: <span id="imgCount">0</span>个</span></div>
+      <div style="font-size:10px;color:var(--text3);margin-bottom:8px">方法①: 成本表/库存表加「图片URL」列自动导入 · 方法②: 下方手动添加</div>
+      <div style="display:flex;gap:6px;margin-bottom:8px">
+        <input type="text" id="imgSku" placeholder="SKU前缀 如 H001" style="flex:1;font-size:11px;padding:5px 8px;border-radius:4px;border:1px solid var(--border);background:var(--bg);color:var(--text);font-family:'JetBrains Mono',monospace;">
+        <input type="text" id="imgUrl" placeholder="图片URL (https://...)" style="flex:3;font-size:11px;padding:5px 8px;border-radius:4px;border:1px solid var(--border);background:var(--bg);color:var(--text);">
+        <button class="fbtn" onclick="addImg()" style="padding:5px 12px;font-size:11px;background:var(--accent);color:#fff;font-weight:600;">添加</button>
+      </div>
+      <div id="imgList" style="max-height:200px;overflow-y:auto;"></div>
+    </div>
+    <div class="section" id="cfgSkuFix" style="margin-top:10px">
+      <div class="section-title">🔧 SKU修正表 <span style="font-size:10px;color:var(--text3);font-weight:400">已修正: <span id="skuFixCount">0</span>条</span></div>
+      <div style="font-size:10px;color:var(--text3);margin-bottom:8px">上架时SKU填错的订单，手动指定正确SKU以匹配成本（key=订单号+原SKU）</div>
+      <div style="display:flex;gap:6px;margin-bottom:8px">
+        <input type="text" id="fixOrderId" placeholder="订单号" style="flex:2;font-size:11px;padding:5px 8px;border-radius:4px;border:1px solid var(--border);background:var(--bg);color:var(--text);font-family:'JetBrains Mono',monospace;">
+        <input type="text" id="fixOldSku" placeholder="原SKU（错误的）" style="flex:2;font-size:11px;padding:5px 8px;border-radius:4px;border:1px solid var(--border);background:var(--bg);color:var(--text);font-family:'JetBrains Mono',monospace;">
+        <input type="text" id="fixSku" placeholder="正确SKU" style="flex:2;font-size:11px;padding:5px 8px;border-radius:4px;border:1px solid var(--border);background:var(--bg);color:var(--text);font-family:'JetBrains Mono',monospace;">
+        <button class="fbtn" onclick="addSkuFix()" style="padding:5px 12px;font-size:11px;background:var(--accent);color:#fff;font-weight:600;">修正</button>
+      </div>
+      <div id="skuFixList" style="max-height:200px;overflow-y:auto;"></div>
+    </div>
   </div>
 
   <!-- ═══ CLOUD SYNC ═══ -->
@@ -572,7 +733,7 @@ let orders=[],spAds=[],tkAds=[],logs=[];
 let costMap={};
 let charts={};
 let filterFrom=null,filterTo=null;
-const PF={overview:{f:null,t:null},dash:{f:null,t:null},cat:{f:null,t:null},spu:{f:null,t:null},cost:{f:null,t:null},ads:{f:null,t:null},sp:{f:null,t:null},tk:{f:null,t:null}};
+const PF={overview:{f:null,t:null},dash:{f:null,t:null},cat:{f:null,t:null},spu:{f:null,t:null},cost:{f:null,t:null},ads:{f:null,t:null},sp:{f:null,t:null},tk:{f:null,t:null},sku:{f:null,t:null},trend:{f:null,t:null}};
 
 // ═══ UTILS ═══
 let skuCatMap={},prefixCatMap={};
@@ -590,7 +751,7 @@ function cardHTML(l,v,s,c,explain){return`<div class="card"><div class="card-glo
 // ═══ DATE FILTER ═══
 function getFilteredOrders(ff,ft){const f=ff!==undefined?ff:filterFrom,t=ft!==undefined?ft:filterTo;if(!f&&!t)return orders;return orders.filter(o=>{if(!o.date)return false;if(f&&o.date<f)return false;if(t&&o.date>t)return false;return true;});}
 
-function setPageFilter(pg,from,to){PF[pg].f=from;PF[pg].t=to;const el=document.getElementById('pf-'+pg);if(el){el.querySelector('.pf-from').value=from||'';el.querySelector('.pf-to').value=to||'';}const fn={overview:renderOverview,cat:renderCat,spu:renderSpu,cost:renderCost,ads:renderAds,sp:renderSP,tk:renderTK};if(fn[pg])fn[pg]();}
+function setPageFilter(pg,from,to){PF[pg].f=from;PF[pg].t=to;const el=document.getElementById('pf-'+pg);if(el){el.querySelector('.pf-from').value=from||'';el.querySelector('.pf-to').value=to||'';}const fn={overview:renderOverview,cat:renderCat,spu:renderSpu,cost:renderCost,ads:renderAds,sp:renderSP,tk:renderTK,sku:renderSku,trend:renderTrend};if(fn[pg])fn[pg]();}
 function pfOrders(pg){const p=PF[pg];return getFilteredOrders(p.f,p.t);}
 function pfAds(pg){const p=PF[pg];return{fSP:spAds.filter(a=>(!p.f||a.date>=p.f)&&(!p.t||a.date<=p.t)),fTK:tkAds.filter(a=>(!p.f||a.date>=p.f)&&(!p.t||a.date<=p.t))};}
 function setDateRange(from,to){filterFrom=from;filterTo=to;PF.dash.f=from;PF.dash.t=to;document.getElementById('dateFrom').value=from||'';document.getElementById('dateTo').value=to||'';renderDash();}
@@ -610,9 +771,9 @@ function parseSPO(rows){return rows.filter(r=>!String(r['Status Pesanan']||'').i
 function parseTKO(rows){return rows.filter(r=>String(r['Order Status']||'')!=='Canceled').map(r=>({p:'TK',id:String(r['Order ID']||''),sku:String(r['Seller SKU']||''),name:String(r['Product Name']||''),qty:pn(r['Quantity'])||1,rev:pn(r['SKU Subtotal After Discount']),date:pd(r['Created Time']),cat:classify(String(r['Product Name']||''),String(r['Seller SKU']||''))})).filter(r=>r.rev>0);}
 function parseSPA(rows,dateFrom,dateTo){const dates=genDates(dateFrom,dateTo);const n=dates.length||1;return rows.filter(r=>pn(r['花费'])>0).flatMap(r=>{const base={p:'SP',name:String(r['广告名称']||'')};const sp=pn(r['花费'])/n,sl=pn(r['销售金额'])/n,ck=pn(r['点击数'])/n,cv=pn(r['转化'])/n;if(dates.length)return dates.map(d=>({...base,spend:sp,sales:sl,clicks:ck,conv:cv,date:d}));return[{...base,spend:sp,sales:sl,clicks:ck,conv:cv,date:'unknown'}];});}
 function parseTKA(rows,dateFrom,dateTo){const dates=genDates(dateFrom,dateTo);const n=dates.length||1;return rows.filter(r=>pn(r['Cost'])>0).flatMap(r=>{const base={p:'TK',name:String(r['Campaign name']||'')};const sp=pn(r['Cost'])/n,sl=pn(r['Gross revenue'])/n,ck=pn(r['Product ad clicks']||0)/n,cv=pn(r['SKU orders']||0)/n;if(dates.length)return dates.map(d=>({...base,spend:sp,sales:sl,clicks:ck,conv:cv,spendIDR:sp*CFG.usdIdr,date:d}));return[{...base,spend:sp,sales:sl,clicks:ck,conv:cv,spendIDR:sp*CFG.usdIdr,date:'unknown'}];});}
-function parseCost(rows){const m={};rows.forEach(r=>{const sku=String(r['库存SKU']||'').trim();if(!sku)return;const buy=pn(r['vincent拿货价'])||pn(r['拿货价']);const ship=pn(r['海运费']);if(buy>0)m[sku]={cost:buy+ship,buy,ship,name:String(r['产品中文名']||'')};});return m;}
+function parseCost(rows){const m={};const imgs={};rows.forEach(r=>{const sku=String(r['库存SKU']||'').trim();if(!sku)return;const buy=pn(r['vincent拿货价'])||pn(r['拿货价']);const ship=pn(r['海运费']);if(buy>0)m[sku]={cost:buy+ship,buy,ship,name:String(r['产品中文名']||'')};const img=String(r['产品图片']||r['图片URL']||r['图片']||r['image_url']||r['image']||'').trim();if(img&&img.startsWith('http')){const pfx=sku.split('-')[0];imgs[pfx]=img;imgs[sku]=img;}});if(Object.keys(imgs).length){Object.assign(imgMap,imgs);saveImgMap();}return m;}
 function skuCost(sku,qty){if(!sku||!Object.keys(costMap).length)return null;if(costMap[sku])return costMap[sku].cost*(qty||1);if(sku.includes('+')){const parts=sku.split('+');let total=0,ok=true;for(let i=0;i<parts.length;i++){let p=parts[i].trim();if(i>0&&/^\d$/.test(p)){p=parts[0].trim().slice(0,-1)+p;}if(costMap[p])total+=costMap[p].cost;else ok=false;}if(ok&&total>0)return total*(qty||1);}return null;}
-function fixSpRevBug(){let n=0;orders.forEach(o=>{if(o.p==='SP'&&o.rev>0&&o.rev<10000){const c=costMap[o.sku];if(c&&c.cost>20){o.rev*=1000;n++;}}});return n;}
+function fixSpRevBug(){let n=0;orders.forEach(o=>{if(o.p!=='SP'||o.rev<=0)return;const up=o.rev/(o.qty||1);if(up<1000){const fixed=o.rev*1000,fup=fixed/(o.qty||1);if(fup>=1000&&fup<=5000000){o.rev=fixed;n++;}}});return n;}
 function skuDetail(sku){if(!sku||!costMap[sku])return null;return costMap[sku];}
 
 function detect(data,text,fileName){
@@ -629,10 +790,10 @@ async function handleFiles(files){
     try{const csv=f.name.toLowerCase().endsWith('.csv');const raw=await new Promise((res,rej)=>{const r=new FileReader();r.onload=e=>res(e.target.result);r.onerror=rej;csv?r.readAsText(f,'utf-8'):r.readAsArrayBuffer(f);});
     const rs=csv?detect(null,raw,f.name):detect(new Uint8Array(raw),null,f.name);
     let added=0;
-    if(rs.t==='spo'||rs.t==='tko'){const ids=new Set(orders.map(o=>o.p+'|'+o.id+'|'+o.sku));const nw=rs.d.filter(o=>!ids.has(o.p+'|'+o.id+'|'+o.sku));added=nw.length;orders=orders.concat(nw);fixSpRevBug();}
+    if(rs.t==='spo'||rs.t==='tko'){const ids=new Set(orders.map(o=>o.p+'|'+o.id+'|'+o.sku));const nw=rs.d.filter(o=>!ids.has(o.p+'|'+o.id+'|'+o.sku));added=nw.length;orders=orders.concat(nw);fixSpRevBug();applySkuFix();}
     else if(rs.t==='spa'){const nk=new Set(rs.d.map(a=>a.name+'|'+a.date));spAds=spAds.filter(a=>!nk.has(a.name+'|'+a.date)).concat(rs.d);added=rs.d.length;}
     else if(rs.t==='tka'){const nk=new Set(rs.d.map(a=>a.name+'|'+a.date));tkAds=tkAds.filter(a=>!nk.has(a.name+'|'+a.date)).concat(rs.d);added=rs.d.length;}
-    else if(rs.t==='cost'){costMap=rs.d;added=Object.keys(rs.d).length;saveCostMap();fixSpRevBug();}
+    else if(rs.t==='cost'){costMap=rs.d;added=Object.keys(rs.d).length;saveCostMap();fixSpRevBug();applySkuFix();}
     const period=(rs.dateFrom&&rs.dateTo)?rs.dateFrom+'~'+rs.dateTo:'';
     logs.unshift({nm:f.name,tp:TN[rs.t]||rs.t,tc:TC[rs.t]||'',rows:rs.n||0,added,tm:new Date().toLocaleTimeString(),period,t:rs.t});
     }catch(e){logs.unshift({nm:f.name,tp:'失败',tc:'',rows:0,added:0,tm:new Date().toLocaleTimeString(),t:'err'});}
@@ -667,8 +828,8 @@ function setSyncUrl(url){localStorage.setItem('wt_sync_url',url);}
 function getAutoSync(){return localStorage.getItem('wt_auto_sync')==='1';}
 function setAutoSync(v){localStorage.setItem('wt_auto_sync',v?'1':'0');}
 function syncLog(msg){const el=document.getElementById('syncLog');if(el)el.textContent=new Date().toLocaleTimeString()+' '+msg+'\n'+el.textContent;}
-async function cloudUpload(){const url=getSyncUrl();if(!url){syncLog('❌ 未设置API地址');return false;}syncLog('⬆️ 正在上传...');try{const payload=JSON.stringify({v:1,ts:new Date().toISOString(),orders,spAds,tkAds,logs,cfg:CFG,margins:MARGINS,costMap,stockData});const resp=await fetch(url,{method:'POST',body:payload,headers:{'Content-Type':'text/plain'}});if(!resp.ok){await fetch(url,{method:'POST',mode:'no-cors',body:payload});syncLog('⬆️ 已发送');return true;}const result=await resp.json();if(result.error){syncLog('❌ '+result.error);return false;}syncLog('✅ 上传成功 ('+orders.length+'条)');return true;}catch(err){syncLog('⬆️ 已发送');return true;}}
-async function cloudDownload(){const url=getSyncUrl();if(!url){syncLog('❌ 未设置');return false;}syncLog('⬇️ 拉取...');try{const resp=await fetch(url);if(!resp.ok)throw new Error('HTTP '+resp.status);const data=await resp.json();if(data.error){syncLog('❌ '+data.error);return false;}const o=data.orders||data.o||[];const sa=data.spAds||data.sa||[];const ta=data.tkAds||data.ta||[];const l=data.logs||data.l||[];if(!o.length&&!sa.length){syncLog('⚠️ 云端无数据');return false;}orders=o;spAds=sa;tkAds=ta;logs=l;if(data.cfg){Object.assign(CFG,data.cfg);saveCfg();}if(data.margins){Object.assign(MARGINS,data.margins);saveMargins();}if(data.costMap){costMap=data.costMap;saveCostMap();}if(data.stockData){stockData=data.stockData;saveStock();buildSkuCatMap();reclassifyOrders();}fixSpRevBug();saveData();renderAll();syncLog('✅ 拉取成功: '+o.length+'条');return true;}catch(err){syncLog('❌ '+err.message);return false;}}
+async function cloudUpload(){const url=getSyncUrl();if(!url){syncLog('❌ 未设置API地址');return false;}syncLog('⬆️ 正在上传...');try{const payload=JSON.stringify({v:1,ts:new Date().toISOString(),orders,spAds,tkAds,logs,cfg:CFG,margins:MARGINS,costMap,stockData,imgMap,skuFixMap});const resp=await fetch(url,{method:'POST',body:payload,headers:{'Content-Type':'text/plain'}});if(!resp.ok){await fetch(url,{method:'POST',mode:'no-cors',body:payload});syncLog('⬆️ 已发送');return true;}const result=await resp.json();if(result.error){syncLog('❌ '+result.error);return false;}syncLog('✅ 上传成功 ('+orders.length+'条)');return true;}catch(err){syncLog('⬆️ 已发送');return true;}}
+async function cloudDownload(){const url=getSyncUrl();if(!url){syncLog('❌ 未设置');return false;}syncLog('⬇️ 拉取...');try{const resp=await fetch(url);if(!resp.ok)throw new Error('HTTP '+resp.status);const data=await resp.json();if(data.error){syncLog('❌ '+data.error);return false;}const o=data.orders||data.o||[];const sa=data.spAds||data.sa||[];const ta=data.tkAds||data.ta||[];const l=data.logs||data.l||[];if(!o.length&&!sa.length){syncLog('⚠️ 云端无数据');return false;}orders=o;spAds=sa;tkAds=ta;logs=l;if(data.cfg){Object.assign(CFG,data.cfg);saveCfg();}if(data.margins){Object.assign(MARGINS,data.margins);saveMargins();}if(data.costMap){costMap=data.costMap;saveCostMap();}if(data.imgMap){imgMap=data.imgMap;saveImgMap();}if(data.skuFixMap){skuFixMap=data.skuFixMap;saveSkuFix();}if(data.stockData){stockData=data.stockData;saveStock();buildSkuCatMap();reclassifyOrders();}fixSpRevBug();applySkuFix();saveData();renderAll();syncLog('✅ 拉取成功: '+o.length+'条');return true;}catch(err){syncLog('❌ '+err.message);return false;}}
 async function cloudTest(){const url=getSyncUrl();if(!url){syncLog('❌ 未设置');return;}syncLog('🔗 测试...');try{const resp=await fetch(url);if(!resp.ok)throw new Error('HTTP '+resp.status);const data=await resp.json();syncLog('✅ 连接成功! 云端: '+(data.orders||data.o||[]).length+'条');}catch(err){syncLog('❌ '+err.message);}}
 
 // ═══ P&L CALC ═══
@@ -717,7 +878,7 @@ function calcCostSummary(_ff,_ft){
 Chart.defaults.font.family="'Plus Jakarta Sans',sans-serif";Chart.defaults.font.size=11;
 
 // ═══ RENDER ALL ═══
-function renderAll(){renderOverview();renderImport();renderDash();renderCat();renderCost();renderSpu();renderAds();renderSP();renderTK();renderInv();renderCfg();
+function renderAll(){renderOverview();renderImport();renderDash();renderCat();renderCost();renderSpu();renderAds();renderSP();renderTK();renderInv();renderCfg();renderLookupRecent();renderAnomaly();
   const pnl=calcPnL(orders);const sb=document.getElementById('statusBar');
   sb.innerHTML=pnl?`${fm(pnl.cnt)} 行 · ${pnl.days} 天\nEBIT ¥${fm(Math.round(pnl.ebit/CFG.ex))}${pnl.matchedCnt>0?' · 精算'+Math.round(pnl.matchedCnt/pnl.cnt*100)+'%':''}\n${getSyncUrl()?'☁️ 已连接':'💾 本地'}`:'无数据';}
 
@@ -941,6 +1102,7 @@ function renderSpu(){
     cum+=s.netRMB;
     return `<tr${i<5?' class="top5"':''}>
       <td class="r">${i+1}</td>
+      <td>${imgTag(s.spu,26)}</td>
       <td class="l bold" style="font-family:'JetBrains Mono',monospace;font-size:10.5px">${s.spu}</td>
       <td class="l" style="max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${s.name}">${s.name}</td>
       <td class="l" style="font-size:10px;color:var(--text3)">${s.cat}</td>
@@ -1159,7 +1321,7 @@ function showColMapper(rows){
   const mapDiv=document.getElementById('stockColMapper');
   mapDiv.style.display='block';
   // Auto-detect columns
-  const guess={sku:-1,qty:-1,cat:-1,sub:-1,name:-1};
+  const guess={sku:-1,qty:-1,cat:-1,sub:-1,name:-1,img:-1};
   hdr.forEach((h,i)=>{
     const n=h.name.toLowerCase();
     if(n.includes('sku')||n.includes('库存sku')||n.includes('编号'))guess.sku=i;
@@ -1167,6 +1329,7 @@ function showColMapper(rows){
     if(n.includes('分类')&&!n.includes('小'))guess.cat=i;
     if(n.includes('小类')||n.includes('subcategory'))guess.sub=i;
     if(n.includes('产品中文名')||n.includes('product')||n.includes('名称')||n.includes('中文'))guess.name=i;
+    if(n.includes('图片')||n.includes('image')||n.includes('img'))guess.img=i;
   });
   const opts=hdr.map(h=>`<option value="${h.idx}">${h.name||'列'+(h.idx+1)}</option>`).join('');
   const optNone=`<option value="-1">（不选）</option>`+opts;
@@ -1180,6 +1343,7 @@ function showColMapper(rows){
       <div><span style="font-size:10px;color:var(--text3);">分类列</span>${sel('cat',false)}</div>
       <div><span style="font-size:10px;color:var(--text3);">小类列</span>${sel('sub',false)}</div>
       <div><span style="font-size:10px;color:var(--text3);">品名列</span>${sel('name',false)}</div>
+      <div><span style="font-size:10px;color:var(--text3);">图片URL列</span>${sel('img',false)}</div>
     </div>
     <div style="margin-top:10px;font-size:10px;color:var(--text3);">预览（前5行）:</div>
     <div style="overflow-x:auto;margin-top:4px;"><table class="tbl"><tr>${hdr.map(h=>`<th style="font-size:9px;">${h.name||'列'+(h.idx+1)}</th>`).join('')}</tr>
@@ -1199,8 +1363,10 @@ function showColMapper(rows){
     const catCol=parseInt(document.getElementById('stockCol_cat').value);
     const subCol=parseInt(document.getElementById('stockCol_sub').value);
     const nameCol=parseInt(document.getElementById('stockCol_name').value);
+    const imgCol=parseInt(document.getElementById('stockCol_img').value);
     if(skuCol<0||qtyCol<0){alert('SKU和库存量为必选');return;}
     stockData=[];
+    const imgs={};
     for(let i=1;i<rows.length;i++){
       const r=rows[i];
       const sku=String(r[skuCol]||'').trim();
@@ -1213,7 +1379,9 @@ function showColMapper(rows){
         sub:subCol>=0?String(r[subCol]||'').trim():'',
         name:nameCol>=0?String(r[nameCol]||'').trim():''
       });
+      if(imgCol>=0){const url=String(r[imgCol]||'').trim();if(url&&url.startsWith('http')){const pfx=sku.split('-')[0];imgs[pfx]=url;imgs[sku]=url;}}
     }
+    if(Object.keys(imgs).length){Object.assign(imgMap,imgs);saveImgMap();}
     saveStock();
     buildSkuCatMap();
     reclassifyOrders();
@@ -1383,6 +1551,8 @@ function renderCfg(){
   <span id="cfgSaveMsg" style="margin-left:8px;font-size:11px;color:var(--green);opacity:0;transition:opacity .3s"></span>`;
   ['cfgStaff','cfgFac'].forEach(id=>document.getElementById(id)?.addEventListener('input',()=>{document.getElementById('cfgTotal').textContent='¥'+fm(Math.round(pn(document.getElementById('cfgStaff').value)+pn(document.getElementById('cfgFac').value)));}));
   document.getElementById('cfgMargins').innerHTML='<div class="section-title">品类毛利率（22类）</div><table><thead><tr><th class="l">品类</th><th class="r">毛利率 %</th></tr></thead><tbody>'+Object.entries(MARGINS).sort((a,b)=>b[1]-a[1]).map(([c,r])=>`<tr><td class="l">${c}</td><td class="r"><input data-cat="${c}" type="number" value="${(r*100).toFixed(1)}" step="0.1" style="width:60px;background:var(--input-bg);border:1px solid var(--border);border-radius:4px;color:${r>=.5?'var(--green)':r>=.3?'var(--text)':'var(--red)'};font-family:'JetBrains Mono',monospace;font-size:12px;padding:3px 6px;text-align:right"></td></tr>`).join('')+'</tbody></table><button onclick="applyMargins()" style="margin-top:10px;padding:7px 22px;background:var(--green);color:#fff;border:none;border-radius:5px;font-weight:700;cursor:pointer;font-size:12px">💾 保存</button><span id="mgSaveMsg" style="margin-left:8px;font-size:11px;color:var(--green);opacity:0;transition:opacity .3s"></span>';
+  renderImgList();
+  renderSkuFixList();
 }
 function applyCfg(){CFG.ex=pn(document.getElementById('cfgEx').value)||2424;CFG.spFee=(pn(document.getElementById('cfgSpFee').value)||24.5)/100;CFG.tkFee=(pn(document.getElementById('cfgTkFee').value)||21)/100;CFG.usdIdr=pn(document.getElementById('cfgUsd').value)||16300;CFG.staffCost=pn(document.getElementById('cfgStaff').value)||7400;CFG.facilityCost=pn(document.getElementById('cfgFac').value)||2700;saveCfg();renderAll();const m=document.getElementById('cfgSaveMsg');m.textContent='✅ 已保存';m.style.opacity='1';setTimeout(()=>m.style.opacity='0',2500);}
 function applyMargins(){document.querySelectorAll('#cfgMargins input[data-cat]').forEach(inp=>{const c=inp.dataset.cat,v=pn(inp.value);if(c&&v>0)MARGINS[c]=v/100;});saveMargins();renderAll();const m=document.getElementById('mgSaveMsg');m.textContent='✅';m.style.opacity='1';setTimeout(()=>m.style.opacity='0',2500);}
@@ -1419,8 +1589,402 @@ function calcSim(){
     </div></div>`:''}`;
 }
 
+// ═══ IMAGE STORAGE ═══
+let imgMap={};try{imgMap=JSON.parse(localStorage.getItem('wt_imgmap')||'{}');}catch(e){}
+let skuFixMap={};try{skuFixMap=JSON.parse(localStorage.getItem('wt_skufix')||'{}');}catch(e){}
+function saveSkuFix(){localStorage.setItem('wt_skufix',JSON.stringify(skuFixMap));}
+function applySkuFix(){let n=0;orders.forEach(o=>{const fix=skuFixMap[o.id+'|'+o.sku];if(fix){o.sku=fix;n++;}});return n;}
+let skuAlias={};try{skuAlias=JSON.parse(localStorage.getItem('wt_skualias')||'{}');}catch(e){}
+function saveAlias(){try{localStorage.setItem('wt_skualias',JSON.stringify(skuAlias));}catch(e){}}
+function saveImgMap(){try{localStorage.setItem('wt_imgmap',JSON.stringify(imgMap));}catch(e){}}
+function getImg(sku){if(!sku)return'';const pfx=sku.split('-')[0];return imgMap[sku]||imgMap[pfx]||'';}
+function imgTag(sku,sz){const url=getImg(sku);if(!url)return'<div style="width:'+sz+'px;height:'+sz+'px;background:var(--bg2);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:'+Math.round(sz*.5)+'px;opacity:.3">📦</div>';return'<img src="'+url+'" style="width:'+sz+'px;height:'+sz+'px;object-fit:cover;border-radius:4px;border:1px solid var(--border);" onerror="this.style.display=\'none\'">';}
+function addImg(){const sku=(document.getElementById('imgSku')?.value||'').trim();const url=(document.getElementById('imgUrl')?.value||'').trim();if(!sku||!url||!url.startsWith('http')){alert('请输入SKU前缀和图片URL');return;}imgMap[sku]=url;saveImgMap();document.getElementById('imgSku').value='';document.getElementById('imgUrl').value='';renderImgList();renderAll();}
+function delImg(k){delete imgMap[k];saveImgMap();renderImgList();}
+function addSkuFix(){const oid=(document.getElementById('fixOrderId')?.value||'').trim();const oldSku=(document.getElementById('fixOldSku')?.value||'').trim();const sku=(document.getElementById('fixSku')?.value||'').trim();if(!oid||!sku){alert('请输入订单号和正确SKU');return;}const key=oid+'|'+oldSku;skuFixMap[key]=sku;saveSkuFix();applySkuFix();saveData();document.getElementById('fixOrderId').value='';document.getElementById('fixOldSku').value='';document.getElementById('fixSku').value='';renderSkuFixList();renderAll();}
+function delSkuFix(k){delete skuFixMap[k];saveSkuFix();renderSkuFixList();}
+function renderSkuFixList(){const el=document.getElementById('skuFixList');const cnt=document.getElementById('skuFixCount');if(!el)return;const keys=Object.keys(skuFixMap);if(cnt)cnt.textContent=keys.length;if(!keys.length){el.innerHTML='<div style="color:var(--text3);font-size:11px;padding:8px">暂无SKU修正。在异常检测页找到无成本订单，复制订单号到此处修正。</div>';return;}el.innerHTML='<div style="display:flex;flex-direction:column;gap:4px;">'+keys.map(k=>{const parts=k.split('|');const oid=parts[0]||'';const oldSku=parts[1]||'(空)';return '<div style="display:flex;align-items:center;gap:6px;padding:4px 8px;background:var(--bg2);border-radius:4px;font-size:10px;flex-wrap:wrap;"><span style="font-family:\'JetBrains Mono\',monospace;color:var(--accent2);max-width:150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="'+oid+'">'+oid+'</span><span style="color:var(--text3);font-family:\'JetBrains Mono\',monospace;text-decoration:line-through">'+oldSku+'</span><span style="color:var(--text3)">→</span><span style="font-family:\'JetBrains Mono\',monospace;color:var(--green);font-weight:600">'+skuFixMap[k]+'</span><span style="flex:1"></span><span onclick="delSkuFix(\''+k.replace(/'/g,"\\'")+'\')" style="cursor:pointer;color:var(--red);font-size:12px" title="删除">✕</span></div>';}).join('')+'</div>';}
+function renderImgList(){const el=document.getElementById('imgList');const cnt=document.getElementById('imgCount');if(!el)return;const keys=Object.keys(imgMap);if(cnt)cnt.textContent=keys.length;if(!keys.length){el.innerHTML='<div style="color:var(--text3);font-size:11px;padding:8px">暂无图片绑定。在成本表加「图片URL」列导入，或手动添加。</div>';return;}el.innerHTML='<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:6px;">'+keys.slice(0,50).map(k=>'<div style="display:flex;align-items:center;gap:6px;padding:4px 8px;background:var(--bg2);border-radius:4px;font-size:10px;"><img src="'+imgMap[k]+'" style="width:28px;height:28px;object-fit:cover;border-radius:3px;" onerror="this.src=\'\'"><span style="font-family:\'JetBrains Mono\',monospace;color:var(--accent2)">'+k+'</span><span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--text3)" title="'+imgMap[k]+'">'+imgMap[k].slice(0,30)+'…</span><span onclick="delImg(\''+k+'\')" style="cursor:pointer;color:var(--red);font-size:12px" title="删除">✕</span></div>').join('')+'</div>';}
+
+// ═══ SKU PROFIT RANKING ═══
+function renderSku(){
+  const _p=PF.sku;const fo=pfOrders('sku');
+  const kpi=document.getElementById('skuKPIs');
+  if(!fo.length){kpi.innerHTML='<div class="kpi-mini" style="grid-column:1/-1"><div class="km-label">SKU分析</div><div class="km-val" style="font-size:14px;color:var(--text3)">请先导入数据</div></div>';return;}
+  const ex=CFG.ex,hasCost=Object.keys(costMap).length>0;
+  const days=new Set(fo.map(o=>o.date).filter(Boolean));const nd=Math.max(days.size,1);
+  const search=(document.getElementById('skuSearch')?.value||'').toLowerCase();
+  // Build SKU map
+  const skuMap={};
+  fo.forEach(o=>{
+    if(!o.sku)return;
+    if(!skuMap[o.sku])skuMap[o.sku]={sku:o.sku,name:'',cat:o.cat,orders:0,qty:0,rev:0,cogs:0,cogsOk:0};
+    const s=skuMap[o.sku];s.orders++;s.qty+=(o.qty||1);s.rev+=o.rev;
+    if(!s.name)s.name=o.name||'';
+    if(hasCost){const c=skuCost(o.sku,o.qty);if(c!==null){s.cogs+=c;s.cogsOk++;}}
+  });
+  let skuList=Object.values(skuMap).map(s=>{
+    const fee=CFG.spFee,net=s.rev*(1-fee);
+    const grossIDR=hasCost&&s.cogsOk>0?(net-s.cogs*ex):(s.rev*(MARGINS[s.cat]||.4));
+    s.gmvRMB=s.rev/ex;s.grossRMB=grossIDR/ex;s.asp=s.orders>0?s.rev/s.orders/ex:0;
+    s.grossRate=s.gmvRMB>0?s.grossRMB/s.gmvRMB:0;s.dailyGross=s.grossRMB/nd;
+    return s;
+  });
+  skuList.sort((a,b)=>b.grossRMB-a.grossRMB);
+  const totalGross=skuList.reduce((s,v)=>s+v.grossRMB,0);
+  // KPIs
+  kpi.innerHTML=[
+    `<div class="kpi-mini"><div class="km-label">活跃SKU</div><div class="km-val">${skuList.length}</div><div class="km-sub">${nd}天</div></div>`,
+    `<div class="kpi-mini"><div class="km-label">TOP1</div><div class="km-val" style="font-size:13px">${skuList[0]?.sku||'—'}</div><div class="km-sub">¥${fm(Math.round(skuList[0]?.grossRMB||0))}</div></div>`,
+    `<div class="kpi-mini"><div class="km-label">TOP10占比</div><div class="km-val">${totalGross>0?(skuList.slice(0,10).reduce((s,v)=>s+v.grossRMB,0)/totalGross*100).toFixed(1)+'%':'—'}</div></div>`,
+    `<div class="kpi-mini"><div class="km-label">日均毛利</div><div class="km-val">¥${fm(Math.round(totalGross/nd))}</div></div>`
+  ].join('');
+  // Filter by search
+  if(search)skuList=skuList.filter(s=>(s.sku+' '+s.name+' '+s.cat).toLowerCase().includes(search));
+  document.getElementById('skuSub').textContent=`${skuList.length}个SKU · ${nd}天 · 按毛利排序${search?' · 搜索: '+search:''}`;
+  let cum=0;
+  document.querySelector('#skuTable tbody').innerHTML=skuList.slice(0,200).map((s,i)=>{
+    cum+=totalGross>0?s.grossRMB/totalGross*100:0;
+    return`<tr${i<5?' class="top5"':''}>
+      <td class="r">${i+1}</td>
+      <td>${imgTag(s.sku,28)}</td>
+      <td class="l" style="font-family:'JetBrains Mono',monospace;font-size:10px">${s.sku}</td>
+      <td class="l" style="max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${s.name}">${s.name}</td>
+      <td class="l" style="font-size:10px;color:var(--text3)">${s.cat}</td>
+      <td class="r">${fm(s.orders)}</td><td class="r">${fm(s.qty)}</td>
+      <td class="r">${fm(Math.round(s.asp))}</td>
+      <td class="r">${hasCost&&s.cogsOk>0?fm(Math.round(s.cogs/s.qty)):'-'}</td>
+      <td class="r green bold">${fm(Math.round(s.grossRMB))}</td>
+      <td class="r">${(s.grossRate*100).toFixed(1)}%</td>
+      <td class="r">${totalGross>0?(s.grossRMB/totalGross*100).toFixed(1)+'%':'—'}</td>
+      <td class="r" style="color:var(--accent2)">¥${fm(Math.round(s.dailyGross))}</td>
+    </tr>`;
+  }).join('');
+}
+
+// ═══ ORDER LOOKUP ═══
+function doLookup(){
+  const q=(document.getElementById('lookupInput')?.value||'').trim();
+  const el=document.getElementById('lookupResult');
+  if(!q){el.innerHTML='<div style="color:var(--text3);padding:20px;text-align:center">请输入订单号</div>';return;}
+  const matches=orders.filter(o=>o.id.includes(q));
+  if(!matches.length){el.innerHTML='<div style="color:var(--red);padding:20px;text-align:center">未找到匹配「'+q+'」的订单</div>';return;}
+  const ex=CFG.ex,hasCost=Object.keys(costMap).length>0;
+  const groups={};matches.forEach(o=>{if(!groups[o.id])groups[o.id]=[];groups[o.id].push(o);});
+  const ids=Object.keys(groups).slice(0,20);
+  el.innerHTML=ids.map(function(oid){
+    const items=groups[oid];
+    const first=items[0];
+    const fee=first.p==='SP'?CFG.spFee:CFG.tkFee;
+    const rows=items.map(function(o){
+      const netRev=o.rev*(1-fee)/ex;
+      const c=hasCost?skuCost(o.sku,o.qty):null;
+      const cogsRMB=c!==null?c:null;
+      const gross=cogsRMB!==null?netRev-cogsRMB:o.rev*(MARGINS[o.cat]||.4)/ex;
+      const grossRate=o.rev/ex>0?gross/(o.rev/ex):0;
+      return{o:o,netRev:netRev,cogsRMB:cogsRMB,gross:gross,grossRate:grossRate};
+    });
+    const totRev=rows.reduce(function(s,r){return s+r.o.rev;},0);
+    const totQty=rows.reduce(function(s,r){return s+(r.o.qty||1);},0);
+    const totNet=rows.reduce(function(s,r){return s+r.netRev;},0);
+    const allHaveCost=rows.every(function(r){return r.cogsRMB!==null;});
+    const totCogs=allHaveCost?rows.reduce(function(s,r){return s+r.cogsRMB;},0):null;
+    const totGross=rows.reduce(function(s,r){return s+r.gross;},0);
+    const totRate=totRev/ex>0?totGross/(totRev/ex):0;
+    const multi=items.length>1;
+    const skuSet=new Set(items.map(function(o){return o.sku;}));
+    const typeTag=skuSet.size>1?(totQty>skuSet.size?'多品多量':'多品单量'):(totQty>1?'单品多量':'单品单量');
+    const typeColor=skuSet.size>1?'var(--accent)':'var(--text3)';
+    var h='<div style="background:var(--bg2);border-radius:8px;padding:14px;margin-bottom:10px;border:1px solid var(--border);">';
+    h+='<div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">';
+    h+='<div style="font-weight:700;font-size:13px;font-family:\'JetBrains Mono\',monospace">'+oid+'</div>';
+    h+='<div style="font-size:10px;color:var(--text3)">'+(first.date||'—')+' · <span class="chip chip-'+(first.p==='SP'?'sp':'tk')+'">'+first.p+'</span>';
+    h+=' · <span style="color:'+typeColor+';font-weight:600">'+typeTag+'</span></div>';
+    h+='</div>';
+    rows.forEach(function(r){
+      h+='<div style="display:flex;align-items:center;gap:10px;padding:8px 10px;margin-bottom:6px;background:var(--bg);border-radius:6px;border:1px solid var(--border);">';
+      h+=imgTag(r.o.sku,36);
+      h+='<div style="flex:1;min-width:0;">';
+      h+='<div style="display:flex;align-items:center;gap:6px;margin-bottom:2px;">';
+      h+='<span style="font-family:\'JetBrains Mono\',monospace;font-size:10px;color:var(--accent2)">'+r.o.sku+'</span>';
+      h+='<span style="font-size:9px;color:var(--text3);padding:1px 5px;background:var(--bg2);border-radius:3px">'+r.o.cat+'</span>';
+      h+='</div>';
+      h+='<div style="font-size:11px;color:var(--text2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+(r.o.name||'').slice(0,40)+'</div>';
+      h+='</div>';
+      h+='<div style="display:flex;align-items:center;gap:6px;font-size:11.5px;text-align:right;white-space:nowrap;">';
+      h+='<div><span style="color:var(--text3);font-size:9px">×</span>'+(r.o.qty||1)+'</div>';
+      h+='<span style="opacity:.2">|</span>';
+      h+='<div>'+fK(r.o.rev)+' <span style="color:var(--text3);font-size:9px">(¥'+fm(Math.round(r.o.rev/ex))+')</span></div>';
+      h+='<span style="opacity:.2">|</span>';
+      h+='<div>¥'+fm(Math.round(r.netRev))+'</div>';
+      h+='<span style="opacity:.2">|</span>';
+      h+='<div>'+(r.cogsRMB!==null?'¥'+fm(Math.round(r.cogsRMB)):'<span style="color:var(--yellow);font-size:9px">估算</span>')+'</div>';
+      h+='<span style="opacity:.2">|</span>';
+      h+='<div style="color:'+(r.gross>=0?'var(--green)':'var(--red)')+'">¥'+fm(Math.round(r.gross))+'<span style="opacity:.4;margin:0 4px">|</span><span style="font-size:9px">'+(r.grossRate*100).toFixed(1)+'%</span></div>';
+      h+='</div></div>';
+    });
+    if(multi){
+      h+='<div style="display:flex;justify-content:flex-end;gap:8px;padding:6px 10px;margin-top:2px;border-top:1px dashed var(--border);font-size:11.5px;font-weight:600;">';
+      h+='<span style="color:var(--text3)">订单汇总</span><span style="opacity:.2">|</span>';
+      h+='<span>×'+totQty+'</span><span style="opacity:.2">|</span>';
+      h+='<span>'+fK(totRev)+' (¥'+fm(Math.round(totRev/ex))+')</span><span style="opacity:.2">|</span>';
+      h+='<span>实收 ¥'+fm(Math.round(totNet))+'</span><span style="opacity:.2">|</span>';
+      h+='<span>成本 '+(totCogs!==null?'¥'+fm(Math.round(totCogs)):'—')+'</span><span style="opacity:.2">|</span>';
+      h+='<span style="color:'+(totGross>=0?'var(--green)':'var(--red)')+'">毛利 ¥'+fm(Math.round(totGross))+'<span style="opacity:.4;margin:0 3px">|</span>('+(totRate*100).toFixed(1)+'%)</span>';
+      h+='</div>';
+    }else{
+      h+='<div style="display:flex;justify-content:flex-end;gap:8px;padding:4px 10px;font-size:10.5px;color:var(--text3)">';
+      h+='<span>扣点'+(fee*100).toFixed(1)+'%: -¥'+fm(Math.round(rows[0].o.rev*fee/ex))+'</span>';
+      h+='<span style="opacity:.25">|</span>';
+      h+='<span>实收: ¥'+fm(Math.round(totNet))+'</span></div>';
+    }
+    h+='</div>';
+    return h;
+  }).join('')+(Object.keys(groups).length>20?'<div style="color:var(--text3);text-align:center;padding:8px">还有 '+(Object.keys(groups).length-20)+' 个订单...</div>':'');
+}
+var lookupFilter='all';
+function setLookupFilter(f,el){lookupFilter=f;document.querySelectorAll('#page-lookup .ftag').forEach(function(t){t.classList.toggle('active',t.dataset.lf===f);});renderLookupRecent();}
+function renderLookupRecent(){
+  const ex=CFG.ex,hasCost=Object.keys(costMap).length>0;
+  const sortBy=document.getElementById('lookupSort')?.value||'rev';
+  const skuQ=(document.getElementById('skuFilterInput')?.value||'').trim().toUpperCase();
+  const srcOrders=skuQ?orders.filter(function(o){return o.sku.toUpperCase().includes(skuQ);}):orders;
+  const gm={};srcOrders.forEach(function(o){if(!gm[o.id])gm[o.id]=[];gm[o.id].push(o);});
+  var orderList=Object.entries(gm).map(function(entry){
+    const oid=entry[0],items=entry[1];
+    const first=items[0];
+    const fee=first.p==='SP'?CFG.spFee:CFG.tkFee;
+    const totRev=items.reduce(function(s,o){return s+o.rev;},0);
+    const totQty=items.reduce(function(s,o){return s+(o.qty||1);},0);
+    const skus=new Set(items.map(function(o){return o.sku;}));
+    const type=skus.size<=1?(totQty>1?'1m':'1s'):(totQty>skus.size?'mm':'ms');
+    const netRev=totRev*(1-fee)/ex;
+    var totCogs=0,allCost=true;
+    items.forEach(function(o){const c=hasCost?skuCost(o.sku,o.qty):null;if(c!==null)totCogs+=c;else allCost=false;});
+    const gross=allCost?netRev-totCogs:totRev*(MARGINS[first.cat]||.4)/ex;
+    const rate=totRev/ex>0?gross/(totRev/ex)*100:0;
+    return{oid:oid,first:first,items:items,totRev:totRev,totQty:totQty,skuCnt:skus.size,type:type,netRev:netRev,totCogs:allCost?totCogs:null,gross:gross,rate:rate};
+  });
+  if(lookupFilter!=='all')orderList=orderList.filter(function(o){return o.type===lookupFilter;});
+  if(sortBy==='rev')orderList.sort(function(a,b){return b.totRev-a.totRev;});
+  else if(sortBy==='date')orderList.sort(function(a,b){return(b.first.date||'').localeCompare(a.first.date||'');});
+  else if(sortBy==='profit')orderList.sort(function(a,b){return b.gross-a.gross;});
+  var show=orderList.slice(0,80);
+  var cntEl=document.getElementById('lookupCount');
+  if(cntEl)cntEl.textContent='('+orderList.length+'单'+(lookupFilter!=='all'?' / 筛选':'')+', 显示TOP '+Math.min(80,orderList.length)+')';
+  var typeLabel={'1s':'单品','1m':'单品×N','ms':'多品','mm':'多品×N'};
+  var typeColor={'1s':'var(--text3)','1m':'#2196f3','ms':'var(--accent)','mm':'#e65100'};
+  document.querySelector('#lookupRecent tbody').innerHTML=show.map(function(o){
+    var skuDisplay=o.items.length<=2?o.items.map(function(i){return i.sku;}).join(', '):o.items[0].sku+' +'+(o.items.length-1);
+    var nameDisplay=o.items.length<=1?(o.first.name||''):(o.items.map(function(i){return(i.name||'').slice(0,15);}).join(' | '));
+    return '<tr>'+
+      '<td style="font-family:\'JetBrains Mono\',monospace;font-size:9px;cursor:pointer;color:var(--accent2)" onclick="document.getElementById(\'lookupInput\').value=\''+o.oid+'\';doLookup();">'+o.oid+'</td>'+
+      '<td>'+(o.first.date||'—')+'</td>'+
+      '<td><span class="chip chip-'+(o.first.p==='SP'?'sp':'tk')+'">'+o.first.p+'</span></td>'+
+      '<td class="l" style="font-size:10px;font-family:\'JetBrains Mono\',monospace;max-width:140px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="'+o.items.map(function(i){return i.sku;}).join(', ')+'">'+skuDisplay+'</td>'+
+      '<td class="l" style="max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+nameDisplay+'</td>'+
+      '<td class="r">'+o.totQty+'</td>'+
+      '<td class="r">'+fK(o.totRev)+'</td>'+
+      '<td class="r">¥'+fm(Math.round(o.netRev))+'</td>'+
+      '<td class="r">'+(o.totCogs!==null?'¥'+fm(Math.round(o.totCogs)):'-')+'</td>'+
+      '<td class="r" style="color:'+(o.gross>=0?'var(--green)':'var(--red)')+'">¥'+fm(Math.round(o.gross))+'</td>'+
+      '<td class="r">'+o.rate.toFixed(1)+'%</td>'+
+      '<td class="c" style="font-size:9px;color:'+typeColor[o.type]+'">'+typeLabel[o.type]+'</td>'+
+    '</tr>';
+  }).join('');
+}
+
+
+// ═══ ANOMALY DETECTION ═══
+function renderAnomaly(){
+  const kpi=document.getElementById('anomalyKPIs');
+  if(!orders.length){kpi.innerHTML='<div class="kpi-mini" style="grid-column:1/-1"><div class="km-val" style="font-size:14px;color:var(--text3)">无数据</div></div>';return;}
+  const ex=CFG.ex,hasCost=Object.keys(costMap).length>0;
+  const filterType=(document.getElementById('anomalyType')?.value||'');
+  // Build SKU stats for anomaly detection
+  const skuStats={};
+  orders.forEach(o=>{
+    if(!skuStats[o.sku])skuStats[o.sku]={revs:[],avg:0,std:0};
+    skuStats[o.sku].revs.push(o.rev);
+  });
+  Object.values(skuStats).forEach(s=>{
+    if(s.revs.length<2)return;
+    s.avg=s.revs.reduce((a,b)=>a+b,0)/s.revs.length;
+    s.std=Math.sqrt(s.revs.reduce((a,b)=>a+(b-s.avg)**2,0)/s.revs.length);
+  });
+  // Detect anomalies
+  const anomalies=[];
+  orders.forEach(o=>{
+    const fee=o.p==='SP'?CFG.spFee:CFG.tkFee;
+    const netRev=o.rev*(1-fee)/ex;
+    const c=hasCost?skuCost(o.sku,o.qty):null;
+    const cogsRMB=c!==null?c:null;
+    const gross=cogsRMB!==null?netRev-cogsRMB:null;
+    const st=skuStats[o.sku];
+    // Rev too low (price bug remnant or error)
+    if(o.rev>0&&o.rev<5000&&o.qty===1){anomalies.push({type:'rev_low',o,gross,cogsRMB,msg:'售价仅'+fK(o.rev)+' IDR，远低于正常范围'});}
+    // Rev too high vs same SKU
+    else if(st&&st.std>0&&st.revs.length>=3&&o.rev>st.avg+3*st.std){anomalies.push({type:'rev_high',o,gross,cogsRMB,msg:'售价'+fK(o.rev)+' 超均值3σ (均值'+fK(st.avg)+')'});}
+    // Negative margin
+    if(gross!==null&&gross<-5){anomalies.push({type:'negative',o,gross,cogsRMB,msg:'毛利¥'+fm(Math.round(gross))+'，亏损'});}
+    // No cost match for high-value items
+    if(!hasCost){}else if(c===null&&o.rev>200000){anomalies.push({type:'zero_cost',o,gross,cogsRMB,msg:'无成本匹配，售价'+fK(o.rev)});}
+  });
+  // KPIs
+  const byType={};anomalies.forEach(a=>{byType[a.type]=(byType[a.type]||0)+1;});
+  kpi.innerHTML=[
+    `<div class="kpi-mini"><div class="km-label">异常总数</div><div class="km-val" style="color:var(--red)">${anomalies.length}</div></div>`,
+    `<div class="kpi-mini"><div class="km-label">收入异常</div><div class="km-val">${(byType.rev_low||0)+(byType.rev_high||0)}</div></div>`,
+    `<div class="kpi-mini"><div class="km-label">毛利为负</div><div class="km-val">${byType.negative||0}</div></div>`,
+    `<div class="kpi-mini"><div class="km-label">无成本匹配</div><div class="km-val">${byType.zero_cost||0}</div></div>`
+  ].join('');
+  // Filter & render
+  const filtered=filterType?anomalies.filter(a=>a.type===filterType):anomalies;
+  const typeLabel={rev_low:'<span class="tag tag-r">低价</span>',rev_high:'<span class="tag tag-y">高价</span>',zero_cost:'<span class="tag tag-y">无成本</span>',negative:'<span class="tag tag-r">亏损</span>'};
+  document.querySelector('#anomalyTable tbody').innerHTML=filtered.slice(0,200).map(a=>`<tr>
+    <td>${typeLabel[a.type]||a.type}</td>
+    <td style="font-family:'JetBrains Mono',monospace;font-size:9px;cursor:pointer;color:var(--accent2)" onclick="document.querySelector('[data-tab=lookup]').click();setTimeout(()=>{document.getElementById('lookupInput').value='${a.o.id}';doLookup();},100);">${a.o.id}</td>
+    <td>${a.o.date||'—'}</td>
+    <td><span class="chip chip-${a.o.p==='SP'?'sp':'tk'}">${a.o.p}</span></td>
+    <td class="l" style="font-size:10px">${a.o.sku}</td>
+    <td class="r">${fK(a.o.rev)}</td>
+    <td class="r">${a.cogsRMB!==null?'¥'+fm(Math.round(a.cogsRMB)):'-'}</td>
+    <td class="r" style="color:${(a.gross||0)>=0?'var(--green)':'var(--red)'}">${a.gross!==null?'¥'+fm(Math.round(a.gross)):'-'}</td>
+    <td class="l" style="font-size:10px;color:var(--text2)">${a.msg}${a.type==='zero_cost'?' <span style="cursor:pointer;color:var(--accent);font-weight:600;margin-left:4px" onclick="document.querySelector(\'[data-tab=cfg]\').click();setTimeout(()=>{document.getElementById(\'fixOrderId\').value=\''+a.o.id+'\';document.getElementById(\'fixOldSku\').value=\''+a.o.sku+'\';document.getElementById(\'fixSku\').focus();document.getElementById(\'fixOrderId\').scrollIntoView({behavior:\'smooth\'});},150);">→修正SKU</span>':''}</td>
+  </tr>`).join('')+(filtered.length>200?'<tr><td colspan="9" style="text-align:center;color:var(--text3)">还有'+(filtered.length-200)+'条...</td></tr>':'');
+}
+
+// ═══ TREND ANALYSIS ═══
+var trendPlat='all';
+function setTrendPlat(p,el){trendPlat=p;document.querySelectorAll('[data-tp]').forEach(t=>t.classList.toggle('active',t.dataset.tp===p));
+  // sync ad table filter
+  document.querySelectorAll('[data-ap]').forEach(t=>t.classList.toggle('active',t.dataset.ap===p));
+  adPlatformFilter=p;renderTrend();}
+
+function renderTrend(){
+  const _p=PF.trend;const allOrd=pfOrders('trend');
+  const fo=trendPlat==='all'?allOrd:allOrd.filter(o=>o.p===trendPlat);
+  if(!fo.length)return;
+  const ex=CFG.ex,hasCost=Object.keys(costMap).length>0;
+  const gran=(document.getElementById('trendGranularity')?.value||'day');
+  const platLabel=trendPlat==='all'?'全平台':trendPlat==='SP'?'Shopee':'TikTok';
+  // Group by period
+  function periodKey(date){
+    if(gran==='week'){const d=new Date(date+'T12:00:00');const day=d.getDay()||7;d.setDate(d.getDate()-day+1);return d.toISOString().slice(0,10);}
+    if(gran==='month')return date.slice(0,7);
+    return date;
+  }
+  function periodLabel(k){
+    if(gran==='week')return 'W'+k.slice(5);
+    if(gran==='month')return k;
+    return k.slice(5);
+  }
+  const bd={};
+  fo.forEach(o=>{
+    if(!o.date)return;
+    const k=periodKey(o.date);
+    if(!bd[k])bd[k]={r:0,g:0,n:0};
+    const fee=o.p==='SP'?CFG.spFee:CFG.tkFee;const net=o.rev*(1-fee);
+    let g;
+    if(hasCost){const c=skuCost(o.sku,o.qty);g=c!==null?net-c*ex:o.rev*(MARGINS[o.cat]||.4);}
+    else{g=o.rev*(MARGINS[o.cat]||.4);}
+    bd[k].r+=o.rev;bd[k].g+=g;bd[k].n++;
+  });
+  const periods=Object.entries(bd).sort(([a],[b])=>a.localeCompare(b));
+  // GMV & Profit chart
+  if(charts.trendGMV)charts.trendGMV.destroy();
+  charts.trendGMV=new Chart(document.getElementById('chartTrendGMV'),{type:'line',data:{labels:periods.map(([k])=>periodLabel(k)),datasets:[
+    {label:'GMV ¥',data:periods.map(([,v])=>Math.round(v.r/ex)),borderColor:'var(--accent)',backgroundColor:'rgba(124,106,239,.08)',borderWidth:2,pointRadius:gran==='day'?2:4,tension:.3,fill:true,yAxisID:'y'},
+    {label:'毛利 ¥',data:periods.map(([,v])=>Math.round(v.g/ex)),borderColor:'var(--green)',backgroundColor:'rgba(61,217,160,.05)',borderWidth:2,pointRadius:gran==='day'?2:4,tension:.3,fill:true,yAxisID:'y'}
+  ]},options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},plugins:{legend:{labels:{usePointStyle:true,font:{size:10}}},tooltip:{callbacks:{label:ctx=>' '+ctx.dataset.label+': ¥'+fm(ctx.parsed.y)}}},scales:{x:{ticks:{font:{size:9},maxTicksLimit:20}},y:{ticks:{font:{size:10},callback:v=>'¥'+fK(v)}}}}});
+  // Orders & ASP chart
+  if(charts.trendASP)charts.trendASP.destroy();
+  charts.trendASP=new Chart(document.getElementById('chartTrendASP'),{type:'bar',data:{labels:periods.map(([k])=>periodLabel(k)),datasets:[
+    {label:'订单',data:periods.map(([,v])=>v.n),backgroundColor:'rgba(124,106,239,.35)',borderRadius:3,yAxisID:'y'},
+    {label:'客单价¥',data:periods.map(([,v])=>v.n>0?Math.round(v.r/v.n/ex):0),type:'line',borderColor:'var(--yellow)',borderWidth:2,pointRadius:gran==='day'?2:4,tension:.3,yAxisID:'y1'}
+  ]},options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},plugins:{legend:{labels:{usePointStyle:true,font:{size:10}}}},scales:{x:{ticks:{font:{size:9},maxTicksLimit:20}},y:{ticks:{font:{size:10}},title:{display:true,text:'订单',font:{size:9}}},y1:{position:'right',ticks:{font:{size:10},callback:v=>'¥'+v},title:{display:true,text:'客单价',font:{size:9}},grid:{display:false}}}}});
+  // ASP Distribution
+  const bins=[{l:'<20k',lo:0,hi:20000},{l:'20-50k',lo:20000,hi:50000},{l:'50-100k',lo:50000,hi:100000},{l:'100-200k',lo:100000,hi:200000},{l:'200-500k',lo:200000,hi:500000},{l:'500k-1M',lo:500000,hi:1000000},{l:'>1M',lo:1000000,hi:1e12}];
+  const binCnt=bins.map(()=>0);
+  fo.forEach(o=>{for(let i=0;i<bins.length;i++){if(o.rev>=bins[i].lo&&o.rev<bins[i].hi){binCnt[i]++;break;}}});
+  if(charts.aspDist)charts.aspDist.destroy();
+  charts.aspDist=new Chart(document.getElementById('chartASPDist'),{type:'bar',data:{labels:bins.map(b=>b.l),datasets:[{label:'订单数',data:binCnt,backgroundColor:['#ef5350','#ff7043','#ffa726','#66bb6a','#42a5f5','#7e57c2','#ab47bc'],borderRadius:4}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>' '+fm(ctx.parsed.y)+'单 ('+((ctx.parsed.y/fo.length)*100).toFixed(1)+'%)'}}},scales:{x:{ticks:{font:{size:10}}},y:{ticks:{font:{size:10}}}}}});
+  // ── Ad Trend Chart: daily spend & sales ──
+  const {fSP,fTK}=pfAds('trend');
+  const adDayMap={};
+  if(trendPlat==='all'||trendPlat==='SP'){
+    fSP.forEach(a=>{if(!a.date||a.date==='unknown')return;const d=a.date;if(!adDayMap[d])adDayMap[d]={spSpend:0,spSales:0,tkSpend:0,tkSales:0};adDayMap[d].spSpend+=a.spend/ex;adDayMap[d].spSales+=a.sales/ex;});
+  }
+  if(trendPlat==='all'||trendPlat==='TK'){
+    fTK.forEach(a=>{if(!a.date||a.date==='unknown')return;const d=a.date;if(!adDayMap[d])adDayMap[d]={spSpend:0,spSales:0,tkSpend:0,tkSales:0};adDayMap[d].tkSpend+=(a.spendIDR||a.spend*CFG.usdIdr)/ex;adDayMap[d].tkSales+=(a.sales||0)*CFG.usdIdr/ex;});
+  }
+  const adDays=Object.keys(adDayMap).sort();
+  if(charts.adTrend)charts.adTrend.destroy();
+  if(adDays.length){
+    const adDS=[];
+    if(trendPlat==='all'||trendPlat==='SP'){
+      adDS.push({label:'SP花费',data:adDays.map(d=>Math.round(adDayMap[d].spSpend)),backgroundColor:'rgba(238,77,45,.55)',stack:'spend',borderRadius:2});
+    }
+    if(trendPlat==='all'||trendPlat==='TK'){
+      adDS.push({label:'TK花费',data:adDays.map(d=>Math.round(adDayMap[d].tkSpend)),backgroundColor:'rgba(255,152,0,.45)',stack:'spend',borderRadius:2});
+    }
+    if(trendPlat==='all'||trendPlat==='SP'){
+      adDS.push({label:'SP广告销售',data:adDays.map(d=>Math.round(adDayMap[d].spSales)),backgroundColor:'rgba(33,150,243,.4)',stack:'sales',borderRadius:2});
+    }
+    if(trendPlat==='all'||trendPlat==='TK'){
+      adDS.push({label:'TK广告销售',data:adDays.map(d=>Math.round(adDayMap[d].tkSales)),backgroundColor:'rgba(0,200,83,.35)',stack:'sales',borderRadius:2});
+    }
+    charts.adTrend=new Chart(document.getElementById('chartAdTrend'),{type:'bar',data:{labels:adDays.map(d=>d.slice(5)),datasets:adDS},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{usePointStyle:true,font:{size:10}}}},scales:{x:{stacked:true,ticks:{font:{size:9},maxTicksLimit:20}},y:{stacked:true,ticks:{font:{size:10},callback:v=>'¥'+fK(v)}}}}});
+  }
+  // ── Ad Campaign Table ──
+  renderAdTable();
+}
+
+var adPlatformFilter='all';
+function setAdPlatform(p,el){adPlatformFilter=p;trendPlat=p;
+  document.querySelectorAll('[data-ap]').forEach(t=>t.classList.toggle('active',t.dataset.ap===p));
+  document.querySelectorAll('[data-tp]').forEach(t=>t.classList.toggle('active',t.dataset.tp===p));
+  renderTrend();}
+
+function renderAdTable(){
+  const ex=CFG.ex;const {fSP,fTK}=pfAds('trend');
+  // Build per-campaign aggregation
+  const campMap={};
+  fSP.forEach(a=>{const k='SP||'+a.name;if(!campMap[k])campMap[k]={p:'SP',name:a.name,spend:0,sales:0,clicks:0,conv:0};campMap[k].spend+=a.spend/ex;campMap[k].sales+=a.sales/ex;campMap[k].clicks+=a.clicks||0;campMap[k].conv+=a.conv||0;});
+  fTK.forEach(a=>{const k='TK||'+a.name;if(!campMap[k])campMap[k]={p:'TK',name:a.name,spend:0,sales:0,clicks:0,conv:0};campMap[k].spend+=(a.spendIDR||a.spend*CFG.usdIdr)/ex;campMap[k].sales+=(a.sales||0)*CFG.usdIdr/ex;campMap[k].clicks+=a.clicks||0;campMap[k].conv+=a.conv||0;});
+  var camps=Object.values(campMap).filter(c=>c.spend>5);
+  if(adPlatformFilter!=='all')camps=camps.filter(c=>c.p===adPlatformFilter);
+  camps.sort((a,b)=>b.spend-a.spend);
+  const totalSpend=camps.reduce((s,c)=>s+c.spend,0);
+  const totalSales=camps.reduce((s,c)=>s+c.sales,0);
+  document.getElementById('adCampaignCount').textContent=camps.length+'个计划 · 总花费¥'+fm(Math.round(totalSpend))+' · 总销售¥'+fm(Math.round(totalSales))+' · ROAS '+(totalSales/Math.max(totalSpend,1)).toFixed(2);
+  document.querySelector('#adROITable tbody').innerHTML=camps.map(c=>{
+    const roas=c.sales/(c.spend||1);
+    const cpc=c.spend/(c.clicks||1);
+    const cvr=c.clicks>0?((c.conv/c.clicks)*100).toFixed(1)+'%':'—';
+    const short=c.name.length>45?c.name.slice(0,42)+'…':c.name;
+    const ptag=c.p==='SP'?'<span style="color:#ee4d2d;font-weight:600;font-size:10px">SP</span>':'<span style="color:#333;font-weight:600;font-size:10px">TK</span>';
+    return '<tr><td class="l" title="'+c.name.replace(/"/g,'&quot;')+'"><b>'+short+'</b></td>'
+      +'<td class="c">'+ptag+'</td>'
+      +'<td class="r">'+fm(Math.round(c.spend))+'</td>'
+      +'<td class="r">'+fm(Math.round(c.sales))+'</td>'
+      +'<td class="r bold" style="color:'+roasColor(roas)+'">'+roas.toFixed(2)+'</td>'
+      +'<td class="r">'+fm(Math.round(c.clicks))+'</td>'
+      +'<td class="r">'+fm(Math.round(c.conv))+'</td>'
+      +'<td class="r">'+(c.clicks>0?cpc.toFixed(1):'—')+'</td>'
+      +'<td class="r">'+cvr+'</td>'
+      +'<td>'+roasTag(roas)+'</td></tr>';
+  }).join('');
+}
+
+// ═══ SKU search & anomaly filter listeners ═══
+document.getElementById('skuSearch')?.addEventListener('input',()=>setTimeout(renderSku,200));
+document.getElementById('anomalyType')?.addEventListener('change',renderAnomaly);
+document.getElementById('trendGranularity')?.addEventListener('change',renderTrend);
+document.getElementById('lookupInput')?.addEventListener('keydown',e=>{if(e.key==='Enter')doLookup();});
+
 // ═══ EVENTS ═══
-document.querySelectorAll('.nav-item').forEach(el=>{el.addEventListener('click',()=>{document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));el.classList.add('active');document.getElementById('page-'+el.dataset.tab).classList.add('active');const t=el.dataset.tab;if(t==='dash')setTimeout(renderDash,50);if(t==='cat')setTimeout(renderCat,50);if(t==='overview')setTimeout(renderOverview,50);if(t==='cost')setTimeout(renderCost,50);if(t==='spu')setTimeout(renderSpu,50);if(t==='inv')setTimeout(renderInv,50);if(t==='sp')setTimeout(renderSP,50);if(t==='tk')setTimeout(renderTK,50);});});
+document.querySelectorAll('.nav-item').forEach(el=>{el.addEventListener('click',()=>{document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));el.classList.add('active');document.getElementById('page-'+el.dataset.tab).classList.add('active');const t=el.dataset.tab;if(t==='dash')setTimeout(renderDash,50);if(t==='cat')setTimeout(renderCat,50);if(t==='overview')setTimeout(renderOverview,50);if(t==='cost')setTimeout(renderCost,50);if(t==='spu')setTimeout(renderSpu,50);if(t==='inv')setTimeout(renderInv,50);if(t==='sp')setTimeout(renderSP,50);if(t==='tk')setTimeout(renderTK,50);if(t==='sku')setTimeout(renderSku,50);if(t==='lookup')setTimeout(renderLookupRecent,50);if(t==='anomaly')setTimeout(renderAnomaly,50);if(t==='trend')setTimeout(renderTrend,50);});});
 
 document.querySelectorAll('.theme-btn').forEach(b=>{b.addEventListener('click',()=>setTheme(b.dataset.theme));});
 if(document.getElementById('mobileThemeBtn'))document.getElementById('mobileThemeBtn').addEventListener('click',()=>{const themes=['dark','light','blue'];const cur=document.documentElement.dataset.theme||'dark';const next=themes[(themes.indexOf(cur)+1)%themes.length];setTheme(next);document.getElementById('mobileThemeBtn').textContent={dark:'🌙 深色',light:'☀️ 浅色',blue:'🔵 科技蓝'}[next]||'🌓 切换主题';});
@@ -1432,16 +1996,16 @@ dropZone.addEventListener('dragleave',()=>dropZone.classList.remove('active'));
 dropZone.addEventListener('drop',e=>{e.preventDefault();dropZone.classList.remove('active');handleFiles(e.dataTransfer.files);});
 fileInput.addEventListener('change',e=>{if(e.target.files.length)handleFiles(e.target.files);e.target.value='';});
 document.getElementById('btnClear').addEventListener('click',()=>{if(!confirm('确定清空所有数据？'))return;orders=[];spAds=[];tkAds=[];logs=[];costMap={};saveData();saveCostMap();renderAll();});
-document.getElementById('btnExport').addEventListener('click',()=>{const blob=new Blob([JSON.stringify({v:1,ts:new Date().toISOString(),orders,spAds,tkAds,logs,costMap,stockData})],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='WaterTap_Backup_'+new Date().toISOString().slice(0,10)+'.json';a.click();});
+document.getElementById('btnExport').addEventListener('click',()=>{const blob=new Blob([JSON.stringify({v:1,ts:new Date().toISOString(),orders,spAds,tkAds,logs,costMap,stockData,imgMap,skuFixMap})],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='WaterTap_Backup_'+new Date().toISOString().slice(0,10)+'.json';a.click();});
 document.getElementById('btnImportBackup').addEventListener('click',()=>document.getElementById('backupInput').click());
-document.getElementById('backupInput').addEventListener('change',async e=>{const f=e.target.files[0];if(!f)return;try{const data=JSON.parse(await f.text());if(!data.orders&&!data.o){alert('无效备份');return;}const o=data.orders||data.o||[];if(!confirm(`恢复 ${o.length}条？`))return;orders=o;spAds=data.spAds||data.sa||[];tkAds=data.tkAds||data.ta||[];logs=data.logs||data.l||[];if(data.costMap){costMap=data.costMap;saveCostMap();}fixSpRevBug();if(data.stockData){stockData=data.stockData;saveStock();buildSkuCatMap();reclassifyOrders();document.getElementById("stockFileName").textContent="✅ "+stockData.length+"个SKU(备份恢复)";document.getElementById("btnClearStock").style.display="inline-block";}saveData();renderAll();alert('恢复成功');}catch(err){alert('失败: '+err.message);}e.target.value='';});
+document.getElementById('backupInput').addEventListener('change',async e=>{const f=e.target.files[0];if(!f)return;try{const data=JSON.parse(await f.text());if(!data.orders&&!data.o){alert('无效备份');return;}const o=data.orders||data.o||[];if(!confirm(`恢复 ${o.length}条？`))return;orders=o;spAds=data.spAds||data.sa||[];tkAds=data.tkAds||data.ta||[];logs=data.logs||data.l||[];if(data.costMap){costMap=data.costMap;saveCostMap();}if(data.imgMap){imgMap=data.imgMap;saveImgMap();}if(data.skuFixMap){skuFixMap=data.skuFixMap;saveSkuFix();}fixSpRevBug();applySkuFix();if(data.stockData){stockData=data.stockData;saveStock();buildSkuCatMap();reclassifyOrders();document.getElementById("stockFileName").textContent="✅ "+stockData.length+"个SKU(备份恢复)";document.getElementById("btnClearStock").style.display="inline-block";}saveData();renderAll();alert('恢复成功');}catch(err){alert('失败: '+err.message);}e.target.value='';});
 document.getElementById('btnQuickSync').addEventListener('click',async()=>{if(!getSyncUrl()){alert('请先配置API地址');return;}const btn=document.getElementById('btnQuickSync');btn.textContent='⏳';btn.disabled=true;await cloudUpload();btn.textContent='☁️ 同步';btn.disabled=false;});
 
 document.querySelectorAll('#dateFilter .fbtn[data-range]').forEach(btn=>{btn.addEventListener('click',()=>{document.querySelectorAll('#dateFilter .fbtn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');const r=btn.dataset.range;if(r==='all')setDateRange(null,null);else if(r==='thisMonth')setDateRange(monthStart(0),today());else if(r==='lastMonth')setDateRange(monthStart(-1),monthEnd(-1));else if(r==='m-2')setDateRange(monthStart(-2),monthEnd(-2));else if(r==='m-3')setDateRange(monthStart(-3),monthEnd(-3));else setDateRange(addDays(today(),-parseInt(r)),today());});});
 document.getElementById('dateFrom').addEventListener('change',e=>{document.querySelectorAll('#dateFilter .fbtn').forEach(b=>b.classList.remove('active'));filterFrom=e.target.value||null;PF.dash.f=filterFrom;renderDash();});
 document.getElementById('dateTo').addEventListener('change',e=>{document.querySelectorAll('#dateFilter .fbtn').forEach(b=>b.classList.remove('active'));filterTo=e.target.value||null;PF.dash.t=filterTo;renderDash();});
 document.addEventListener('click',e=>{const btn=e.target.closest('.pf-btn');if(!btn)return;const pg=btn.dataset.pf,r=btn.dataset.range;document.querySelectorAll('#pf-'+pg+' .pf-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');if(r==='all')setPageFilter(pg,null,null);else if(r==='thisMonth')setPageFilter(pg,monthStart(0),today());else if(r==='lastMonth')setPageFilter(pg,monthStart(-1),monthEnd(-1));else if(r==='m-2')setPageFilter(pg,monthStart(-2),monthEnd(-2));else if(r==='m-3')setPageFilter(pg,monthStart(-3),monthEnd(-3));else setPageFilter(pg,addDays(today(),-parseInt(r)),today());});
-document.addEventListener('change',e=>{if(e.target.classList.contains('pf-from')){const pg=e.target.dataset.pf;document.querySelectorAll('#pf-'+pg+' .pf-btn').forEach(b=>b.classList.remove('active'));PF[pg].f=e.target.value||null;const fn={overview:renderOverview,cat:renderCat,spu:renderSpu,cost:renderCost,ads:renderAds,sp:renderSP,tk:renderTK};if(fn[pg])fn[pg]();}if(e.target.classList.contains('pf-to')){const pg=e.target.dataset.pf;document.querySelectorAll('#pf-'+pg+' .pf-btn').forEach(b=>b.classList.remove('active'));PF[pg].t=e.target.value||null;const fn={overview:renderOverview,cat:renderCat,spu:renderSpu,cost:renderCost,ads:renderAds,sp:renderSP,tk:renderTK};if(fn[pg])fn[pg]();}});
+document.addEventListener('change',e=>{if(e.target.classList.contains('pf-from')){const pg=e.target.dataset.pf;document.querySelectorAll('#pf-'+pg+' .pf-btn').forEach(b=>b.classList.remove('active'));PF[pg].f=e.target.value||null;const fn={overview:renderOverview,cat:renderCat,spu:renderSpu,cost:renderCost,ads:renderAds,sp:renderSP,tk:renderTK,sku:renderSku,trend:renderTrend};if(fn[pg])fn[pg]();}if(e.target.classList.contains('pf-to')){const pg=e.target.dataset.pf;document.querySelectorAll('#pf-'+pg+' .pf-btn').forEach(b=>b.classList.remove('active'));PF[pg].t=e.target.value||null;const fn={overview:renderOverview,cat:renderCat,spu:renderSpu,cost:renderCost,ads:renderAds,sp:renderSP,tk:renderTK,sku:renderSku,trend:renderTrend};if(fn[pg])fn[pg]();}});
 
 document.getElementById('btnSaveUrl').addEventListener('click',()=>{const url=document.getElementById('syncUrl').value.trim();if(!url||!url.startsWith('https://script.google.com/')){alert('URL格式不对');return;}setSyncUrl(url);document.getElementById('urlStatus').textContent='✅ 已保存';syncLog('🔗 已保存');});
 document.getElementById('btnCloudUp').addEventListener('click',cloudUpload);
@@ -1456,7 +2020,7 @@ document.getElementById('autoSync').addEventListener('change',e=>setAutoSync(e.t
   const t=localStorage.getItem('wt_theme');if(t)setTheme(t);
   const url=getSyncUrl();if(url)document.getElementById('syncUrl').value=url;
   document.getElementById('autoSync').checked=getAutoSync();
-  loadData();loadCostMap();fixSpRevBug();
+  loadData();loadCostMap();fixSpRevBug();applySkuFix();
   if(Object.keys(skuCatMap).length&&orders.length){orders.forEach(o=>{o.cat=classify(o.name,o.sku);});saveData();}
   updateChartTheme();
   renderAll();
