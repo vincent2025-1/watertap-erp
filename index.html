@@ -83,6 +83,8 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(-
 .page{display:none;animation:fadeIn .2s ease;}
 .page.active{display:block;}
 @keyframes fadeIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+@keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+.spin{display:inline-block;animation:spin 1.2s linear infinite;}
 .page-header{margin-bottom:18px;}
 .page-title{font-size:18px;font-weight:700;letter-spacing:-.2px;}
 .page-sub{font-size:11.5px;color:var(--text3);margin-top:3px;font-family:'JetBrains Mono',monospace;}
@@ -315,6 +317,7 @@ tr.inv-warn{background:#fffde7 !important;}
   <div class="nav-item" data-tab="lookup"><span class="nav-icon">🔍</span>订单查询</div>
   <div class="nav-item" data-tab="anomaly"><span class="nav-icon">⚠️</span>异常检测</div>
   <div class="nav-item" data-tab="trend"><span class="nav-icon">📈</span>趋势分析</div>
+  <div class="nav-item" data-tab="ai"><span class="nav-icon">🤖</span>AI诊断</div>
   <div class="nav-item" data-tab="sim"><span class="nav-icon">🧮</span>利润模拟</div>
   <div class="nav-sep"></div>
   <div class="nav-item" data-tab="import"><span class="nav-icon">📂</span>数据导入</div>
@@ -596,6 +599,37 @@ tr.inv-warn{background:#fffde7 !important;}
         <th class="l">广告计划</th><th class="c" style="width:36px">平台</th><th class="r">花费¥</th><th class="r">广告销售¥</th>
         <th class="r">ROAS</th><th class="r">点击</th><th class="r">转化</th><th class="r">CPC¥</th><th class="r">CVR</th><th>判定</th>
       </tr></thead><tbody></tbody></table></div>
+    </div>
+  </div>
+
+  <!-- ═══ AI DIAGNOSTICS ═══ -->
+  <div class="page" id="page-ai">
+    <div class="page-header"><div class="page-title">🤖 AI运营诊断</div><div class="page-sub">商品四象限矩阵 · AI一键诊断报告</div></div>
+
+    <!-- BCG Matrix -->
+    <div class="section">
+      <div class="flex-between" style="margin-bottom:8px">
+        <div class="section-title" style="margin:0">商品四象限矩阵（BCG）</div>
+        <div style="font-size:10.5px;color:var(--text3)">X=GMV增长率 · Y=净利贡献¥ · 气泡=GMV体量</div>
+      </div>
+      <div class="chart-box" style="height:360px"><canvas id="chartBCG"></canvas></div>
+      <div id="bcgLegend" style="margin-top:8px;font-size:11px;color:var(--text2)"></div>
+    </div>
+
+    <!-- AI Diagnosis -->
+    <div class="section" style="margin-top:16px">
+      <div class="flex-between" style="margin-bottom:12px">
+        <div class="section-title" style="margin:0">AI运营诊断报告</div>
+        <button onclick="runAIDiagnosis()" id="btnAI" style="padding:8px 20px;background:var(--accent);color:#fff;border:none;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:6px">
+          <span>🔍</span> 生成诊断报告
+        </button>
+      </div>
+      <div id="aiReport" style="min-height:120px;padding:20px;background:var(--bg2);border-radius:8px;border:1px solid var(--border)">
+        <div style="text-align:center;padding:30px;color:var(--text3)">
+          <div style="font-size:32px;margin-bottom:8px;opacity:.5">🤖</div>
+          <div style="font-size:12px">点击「生成诊断报告」，AI将分析当前数据<br>输出商品结构、广告效率、经营风险等诊断结果</div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -1977,6 +2011,206 @@ function renderAdTable(){
   }).join('');
 }
 
+// ═══ AI DIAGNOSTICS: BCG Matrix + AI Diagnosis ═══
+function catLabel(cat){return cat||'其他';}
+function guessCat(name){return classify(name,'');}
+
+function renderAI(){
+  const ex=CFG.ex,hasCost=Object.keys(costMap).length>0;
+  const fo=pfOrders('trend');if(!fo.length)return;
+  // Split data into two halves for growth calculation
+  const dates=[...new Set(fo.map(o=>o.date).filter(Boolean))].sort();
+  const mid=dates[Math.floor(dates.length/2)];
+  const catData={};
+  fo.forEach(o=>{
+    if(!o.date||!o.cat)return;
+    if(!catData[o.cat])catData[o.cat]={r1:0,r2:0,g1:0,g2:0,n:0,gmv:0};
+    const fee=o.p==='SP'?CFG.spFee:CFG.tkFee;const net=o.rev*(1-fee);
+    let g;
+    if(hasCost){const c=skuCost(o.sku,o.qty);g=c!==null?net-c*ex:o.rev*(MARGINS[o.cat]||.4);}
+    else g=o.rev*(MARGINS[o.cat]||.4);
+    if(o.date<=mid){catData[o.cat].r1+=o.rev;catData[o.cat].g1+=g;}
+    else{catData[o.cat].r2+=o.rev;catData[o.cat].g2+=g;}
+    catData[o.cat].n++;catData[o.cat].gmv+=o.rev;
+  });
+  // Calculate ads per category for net profit
+  const {fSP,fTK}=pfAds('trend');
+  const catAd={};
+  fSP.forEach(a=>{const cat=guessCat(a.name);if(!catAd[cat])catAd[cat]=0;catAd[cat]+=a.spend/ex;});
+  fTK.forEach(a=>{const cat=guessCat(a.name||'');if(!catAd[cat])catAd[cat]=0;catAd[cat]+=(a.spendIDR||a.spend*CFG.usdIdr)/ex;});
+  const pts=[];
+  Object.entries(catData).forEach(([cat,d])=>{
+    if(d.n<5)return;
+    const growth=d.r1>0?((d.r2/d.r1)-1)*100:0;
+    const totalGross=(d.g1+d.g2)/ex;
+    const adSpend=catAd[cat]||0;
+    const netProfit=totalGross-adSpend;
+    const gmvRmb=d.gmv/ex;
+    pts.push({cat,growth:Math.max(-100,Math.min(300,growth)),profit:netProfit,gmv:gmvRmb,n:d.n});
+  });
+  if(!pts.length)return;
+  // Medians for quadrant lines
+  const growths=pts.map(p=>p.growth).sort((a,b)=>a-b);
+  const profits=pts.map(p=>p.profit).sort((a,b)=>a-b);
+  const medGrowth=growths[Math.floor(growths.length/2)];
+  const medProfit=profits[Math.floor(profits.length/2)];
+  // Colors by quadrant
+  const colors=pts.map(p=>{
+    if(p.growth>=medGrowth&&p.profit>=medProfit)return'#4caf50';// star
+    if(p.growth<medGrowth&&p.profit>=medProfit)return'#2196f3';// cash cow
+    if(p.growth>=medGrowth&&p.profit<medProfit)return'#ff9800';// question
+    return'#ef5350';// dog
+  });
+  const maxGmv=Math.max(...pts.map(p=>p.gmv));
+  if(charts.bcg)charts.bcg.destroy();
+  const bcgLinePlugin={id:'bcgLines',afterDraw(chart){
+    const{ctx}=chart;const xA=chart.scales.x;const yA=chart.scales.y;
+    ctx.save();ctx.strokeStyle='rgba(150,150,150,.35)';ctx.lineWidth=1;ctx.setLineDash([5,4]);
+    // Vertical line at medGrowth
+    const xPx=xA.getPixelForValue(medGrowth);ctx.beginPath();ctx.moveTo(xPx,yA.top);ctx.lineTo(xPx,yA.bottom);ctx.stroke();
+    // Horizontal line at medProfit
+    const yPx=yA.getPixelForValue(medProfit);ctx.beginPath();ctx.moveTo(xA.left,yPx);ctx.lineTo(xA.right,yPx);ctx.stroke();
+    // Quadrant labels
+    ctx.setLineDash([]);ctx.font='11px sans-serif';ctx.fillStyle='rgba(150,150,150,.5)';ctx.textAlign='center';
+    ctx.fillText('⭐ 明星品',(xA.getPixelForValue(xA.max)+xPx)/2,yA.top+16);
+    ctx.fillText('🐄 金牛品',(xA.getPixelForValue(xA.min)+xPx)/2,yA.top+16);
+    ctx.fillText('❓ 问题品',(xA.getPixelForValue(xA.max)+xPx)/2,yA.bottom-8);
+    ctx.fillText('🐶 瘦狗品',(xA.getPixelForValue(xA.min)+xPx)/2,yA.bottom-8);
+    ctx.restore();
+  }};
+  charts.bcg=new Chart(document.getElementById('chartBCG'),{type:'bubble',plugins:[bcgLinePlugin],data:{datasets:[{
+    data:pts.map((p,i)=>({x:p.growth,y:p.profit,r:Math.max(5,Math.min(35,(p.gmv/maxGmv)*35)),cat:p.cat,n:p.n,gmv:p.gmv})),
+    backgroundColor:colors.map(c=>c+'99'),borderColor:colors,borderWidth:1.5
+  }]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{
+    title:ctx=>{const d=ctx[0].raw;return catLabel(d.cat);},
+    label:ctx=>{const d=ctx[0].raw;return[' 增长率: '+(d.x>0?'+':'')+d.x.toFixed(1)+'%',' 净利: ¥'+fm(Math.round(d.y)),' GMV: ¥'+fm(Math.round(d.gmv)),' 订单: '+d.n+'单'];}
+  }}},scales:{x:{title:{display:true,text:'GMV增长率 %',font:{size:11}},grid:{color:'var(--border)'},ticks:{font:{size:10},callback:v=>v+'%'}},y:{title:{display:true,text:'净利贡献 ¥',font:{size:11}},grid:{color:'var(--border)'},ticks:{font:{size:10},callback:v=>'¥'+fK(v)}}}
+  }});
+  // Legend
+  const quadrants=[
+    {c:'#4caf50',l:'⭐ 明星品',d:'高增长+高利润 → 重点加投'},
+    {c:'#2196f3',l:'🐄 金牛品',d:'低增长+高利润 → 维持投入'},
+    {c:'#ff9800',l:'❓ 问题品',d:'高增长+低利润 → 优化定价/降广告'},
+    {c:'#ef5350',l:'🐶 瘦狗品',d:'低增长+低利润 → 考虑砍掉'}
+  ];
+  const qCounts=[0,0,0,0];
+  pts.forEach((p,i)=>{if(colors[i]==='#4caf50')qCounts[0]++;else if(colors[i]==='#2196f3')qCounts[1]++;else if(colors[i]==='#ff9800')qCounts[2]++;else qCounts[3]++;});
+  document.getElementById('bcgLegend').innerHTML=quadrants.map((q,i)=>
+    '<span style="display:inline-flex;align-items:center;gap:4px;margin-right:16px"><span style="width:10px;height:10px;border-radius:50%;background:'+q.c+';display:inline-block"></span><b>'+q.l+'</b>('+qCounts[i]+'个) <span style="color:var(--text3)">'+q.d+'</span></span>'
+  ).join('');
+}
+
+function collectDiagnosisData(){
+  const ex=CFG.ex,hasCost=Object.keys(costMap).length>0;
+  const fo=pfOrders('trend');if(!fo.length)return null;
+  const dates=[...new Set(fo.map(o=>o.date).filter(Boolean))].sort();
+  const totalDays=dates.length;
+  // Overall metrics
+  let totalGMV=0,totalGross=0,totalOrders=fo.length;
+  const catStats={};
+  fo.forEach(o=>{
+    totalGMV+=o.rev/ex;
+    const fee=o.p==='SP'?CFG.spFee:CFG.tkFee;const net=o.rev*(1-fee);
+    let g;if(hasCost){const c=skuCost(o.sku,o.qty);g=c!==null?net-c*ex:o.rev*(MARGINS[o.cat]||.4);}else g=o.rev*(MARGINS[o.cat]||.4);
+    totalGross+=g/ex;
+    const cat=o.cat||'other';
+    if(!catStats[cat])catStats[cat]={gmv:0,gross:0,n:0,sp:0,tk:0};
+    catStats[cat].gmv+=o.rev/ex;catStats[cat].gross+=g/ex;catStats[cat].n++;
+    if(o.p==='SP')catStats[cat].sp++;else catStats[cat].tk++;
+  });
+  // Ad data
+  const {fSP,fTK}=pfAds('trend');
+  let totalAdSpend=0,totalAdSales=0;
+  const adCamps=[];
+  const campMap={};
+  fSP.forEach(a=>{totalAdSpend+=a.spend/ex;totalAdSales+=a.sales/ex;const k='SP:'+a.name;if(!campMap[k])campMap[k]={p:'SP',name:a.name,spend:0,sales:0};campMap[k].spend+=a.spend/ex;campMap[k].sales+=a.sales/ex;});
+  fTK.forEach(a=>{const s=(a.spendIDR||a.spend*CFG.usdIdr)/ex;const sl=(a.sales||0)*CFG.usdIdr/ex;totalAdSpend+=s;totalAdSales+=sl;const k='TK:'+a.name;if(!campMap[k])campMap[k]={p:'TK',name:a.name,spend:0,sales:0};campMap[k].spend+=s;campMap[k].sales+=sl;});
+  Object.values(campMap).filter(c=>c.spend>10).sort((a,b)=>b.spend-a.spend).slice(0,15).forEach(c=>adCamps.push({p:c.p,name:c.name.slice(0,40),spend:Math.round(c.spend),sales:Math.round(c.sales),roas:+(c.sales/Math.max(c.spend,1)).toFixed(2)}));
+  // Top categories
+  const cats=Object.entries(catStats).sort((a,b)=>b[1].gmv-a[1].gmv).slice(0,12).map(([cat,d])=>({
+    cat:catLabel(cat),gmv:Math.round(d.gmv),gross:Math.round(d.gross),orders:d.n,
+    margin:d.gmv>0?+(d.gross/d.gmv*100).toFixed(1):0,shopee:d.sp,tiktok:d.tk
+  }));
+  return {
+    period:dates[0]+'~'+dates[dates.length-1],
+    days:totalDays,
+    gmv:Math.round(totalGMV),
+    gross:Math.round(totalGross),
+    orders:totalOrders,
+    adSpend:Math.round(totalAdSpend),
+    adSales:Math.round(totalAdSales),
+    roas:+(totalAdSales/Math.max(totalAdSpend,1)).toFixed(2),
+    netProfit:Math.round(totalGross-totalAdSpend),
+    categories:cats,
+    topAds:adCamps
+  };
+}
+
+async function runAIDiagnosis(){
+  const btn=document.getElementById('btnAI');
+  const report=document.getElementById('aiReport');
+  const data=collectDiagnosisData();
+  if(!data){report.innerHTML='<div style="color:var(--red);padding:20px">⚠️ 请先导入数据</div>';return;}
+  btn.disabled=true;btn.innerHTML='<span class="spin">⏳</span> 分析中...';
+  report.innerHTML='<div style="text-align:center;padding:30px;color:var(--text3)"><div class="spin" style="font-size:28px;display:inline-block">⏳</div><div style="margin-top:8px;font-size:12px">AI正在分析 '+data.days+' 天数据，请稍候...</div></div>';
+  const prompt=`你是一位资深电商运营分析师。请基于以下数据，输出一份结构化的运营诊断报告。用中文回答，言简意赅。
+
+## 店铺数据（${data.period}，${data.days}天）
+- 总GMV: ¥${fm(data.gmv)} | 总订单: ${fm(data.orders)} | 毛利: ¥${fm(data.gross)}
+- 广告花费: ¥${fm(data.adSpend)} | 广告销售: ¥${fm(data.adSales)} | ROAS: ${data.roas}
+- 经营利润(毛利-广告): ¥${fm(data.netProfit)} | 日均: ¥${fm(Math.round(data.netProfit/data.days))}
+
+## 品类数据（按GMV降序）
+${data.categories.map(c=>'- '+c.cat+': GMV¥'+fm(c.gmv)+' / 毛利¥'+fm(c.gross)+' ('+c.margin+'%) / '+c.orders+'单 / SP:'+c.shopee+' TK:'+c.tiktok).join('\n')}
+
+## TOP广告计划（按花费降序）
+${data.topAds.map(a=>'- ['+a.p+'] '+a.name+': 花费¥'+fm(a.spend)+' / 销售¥'+fm(a.sales)+' / ROAS '+a.roas).join('\n')}
+
+## 背景信息
+- 印尼水管/卫浴电商，Shopee+TikTok双平台
+- 黄色15mm洗车管为独家无竞品产品
+- 平台佣金: Shopee ~24.5%, TikTok ~21%
+- 汇率: 1 CNY = 2,424 IDR
+
+## 请输出以下诊断模块
+1. **总体经营评估**（2-3句话：健康度、利润率、趋势判断）
+2. **商品结构诊断**（品类集中度风险、明星品/问题品识别、增长/衰退品）
+3. **广告效率诊断**（哪些计划该砍/加投/观察，花费分配合理性）
+4. **利润结构分析**（毛利率分布、高/低毛利品占比、优化空间）
+5. **关键风险预警**（最多3条，按严重程度排序）
+6. **本周行动建议**（最多3条具体可执行的操作，附预期效果）
+
+格式要求：每个模块用标题+简短正文，总长控制在600字内。不要客套话。`;
+
+  try{
+    const resp=await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({model:'claude-sonnet-4-5-20250929',max_tokens:1500,messages:[{role:'user',content:prompt}]})
+    });
+    if(!resp.ok)throw new Error('API '+resp.status);
+    const json=await resp.json();
+    const text=json.content?.map(b=>b.text||'').join('\n')||'无返回内容';
+    // Render markdown-like formatting
+    report.innerHTML='<div style="font-size:12.5px;line-height:1.7;color:var(--text)">'+renderMD(text)+'</div>'
+      +'<div style="margin-top:12px;padding-top:10px;border-top:1px solid var(--border);font-size:10px;color:var(--text3)">📊 数据周期: '+data.period+' ('+data.days+'天) · 生成时间: '+new Date().toLocaleString('zh-CN')+'</div>';
+  }catch(e){
+    report.innerHTML='<div style="color:var(--red);padding:20px">⚠️ 诊断失败: '+e.message+'<br><span style="font-size:11px;color:var(--text3)">请确认网络连接正常</span></div>';
+  }
+  btn.disabled=false;btn.innerHTML='<span>🔍</span> 生成诊断报告';
+}
+
+function renderMD(text){
+  return text
+    .replace(/\*\*(.+?)\*\*/g,'<b>$1</b>')
+    .replace(/^### (.+)$/gm,'<div style="font-size:14px;font-weight:700;color:var(--accent);margin:16px 0 6px">$1</div>')
+    .replace(/^## (.+)$/gm,'<div style="font-size:14px;font-weight:700;color:var(--accent);margin:16px 0 6px">$1</div>')
+    .replace(/^# (.+)$/gm,'<div style="font-size:15px;font-weight:700;color:var(--accent);margin:16px 0 8px">$1</div>')
+    .replace(/^[-•] (.+)$/gm,'<div style="padding-left:12px;margin:3px 0">· $1</div>')
+    .replace(/^(\d+)\. (.+)$/gm,'<div style="padding-left:12px;margin:3px 0"><b>$1.</b> $2</div>')
+    .replace(/\n\n/g,'<div style="height:8px"></div>')
+    .replace(/\n/g,'<br>');
+}
+
 // ═══ SKU search & anomaly filter listeners ═══
 document.getElementById('skuSearch')?.addEventListener('input',()=>setTimeout(renderSku,200));
 document.getElementById('anomalyType')?.addEventListener('change',renderAnomaly);
@@ -1984,7 +2218,7 @@ document.getElementById('trendGranularity')?.addEventListener('change',renderTre
 document.getElementById('lookupInput')?.addEventListener('keydown',e=>{if(e.key==='Enter')doLookup();});
 
 // ═══ EVENTS ═══
-document.querySelectorAll('.nav-item').forEach(el=>{el.addEventListener('click',()=>{document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));el.classList.add('active');document.getElementById('page-'+el.dataset.tab).classList.add('active');const t=el.dataset.tab;if(t==='dash')setTimeout(renderDash,50);if(t==='cat')setTimeout(renderCat,50);if(t==='overview')setTimeout(renderOverview,50);if(t==='cost')setTimeout(renderCost,50);if(t==='spu')setTimeout(renderSpu,50);if(t==='inv')setTimeout(renderInv,50);if(t==='sp')setTimeout(renderSP,50);if(t==='tk')setTimeout(renderTK,50);if(t==='sku')setTimeout(renderSku,50);if(t==='lookup')setTimeout(renderLookupRecent,50);if(t==='anomaly')setTimeout(renderAnomaly,50);if(t==='trend')setTimeout(renderTrend,50);});});
+document.querySelectorAll('.nav-item').forEach(el=>{el.addEventListener('click',()=>{document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));el.classList.add('active');document.getElementById('page-'+el.dataset.tab).classList.add('active');const t=el.dataset.tab;if(t==='dash')setTimeout(renderDash,50);if(t==='cat')setTimeout(renderCat,50);if(t==='overview')setTimeout(renderOverview,50);if(t==='cost')setTimeout(renderCost,50);if(t==='spu')setTimeout(renderSpu,50);if(t==='inv')setTimeout(renderInv,50);if(t==='sp')setTimeout(renderSP,50);if(t==='tk')setTimeout(renderTK,50);if(t==='sku')setTimeout(renderSku,50);if(t==='lookup')setTimeout(renderLookupRecent,50);if(t==='anomaly')setTimeout(renderAnomaly,50);if(t==='trend')setTimeout(renderTrend,50);if(t==='ai')setTimeout(renderAI,50);});});
 
 document.querySelectorAll('.theme-btn').forEach(b=>{b.addEventListener('click',()=>setTheme(b.dataset.theme));});
 if(document.getElementById('mobileThemeBtn'))document.getElementById('mobileThemeBtn').addEventListener('click',()=>{const themes=['dark','light','blue'];const cur=document.documentElement.dataset.theme||'dark';const next=themes[(themes.indexOf(cur)+1)%themes.length];setTheme(next);document.getElementById('mobileThemeBtn').textContent={dark:'🌙 深色',light:'☀️ 浅色',blue:'🔵 科技蓝'}[next]||'🌓 切换主题';});
